@@ -26,7 +26,7 @@ def test_monthly_kpis_on_fixture(fixture_con):
 
 def test_segment_kpis(fixture_con):
     df = compute_kpis(fixture_con, dims=["category"], start="2018-02", end="2018-02")
-    rev = dict(zip(df["category"], df["revenue"]))
+    rev = dict(zip(df["category"], df["revenue"], strict=True))
     assert rev["health_beauty"] == pytest.approx(150)
     assert rev["computers_accessories"] == pytest.approx(200)
 
