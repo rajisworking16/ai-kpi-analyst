@@ -1,0 +1,205 @@
+[
+ {
+  "id": "s01_category_demand_drop",
+  "affected": [
+   514
+  ],
+  "level": 1,
+  "target_flagged": {
+   "revenue": false
+  },
+  "detection": {
+   "revenue": {
+    "pct_change": -0.07217709243237609,
+    "z_score": 0.04538663513504395,
+    "significant": false
+   }
+  }
+ },
+ {
+  "id": "s02_category_price_hike",
+  "affected": [
+   606
+  ],
+  "level": 0,
+  "target_flagged": {
+   "aov": true
+  },
+  "detection": {
+   "aov": {
+    "pct_change": 0.03353004852253365,
+    "z_score": 2.4196516656787117,
+    "significant": true
+   }
+  }
+ },
+ {
+  "id": "s03_top_seller_dropout",
+  "affected": [
+   206
+  ],
+  "level": 1,
+  "target_flagged": {
+   "revenue": false
+  },
+  "detection": {
+   "revenue": {
+    "pct_change": -0.02848201237616582,
+    "z_score": 0.46159716425394726,
+    "significant": false
+   }
+  }
+ },
+ {
+  "id": "s04_regional_delivery_delay",
+  "affected": [
+   751
+  ],
+  "level": 0,
+  "target_flagged": {
+   "late_rate": true
+  },
+  "detection": {
+   "late_rate": {
+    "pct_change": 1.1198550838323178,
+    "z_score": -0.17560843034424564,
+    "significant": true
+   }
+  }
+ },
+ {
+  "id": "s05_delay_hurts_reviews",
+  "affected": [
+   350
+  ],
+  "level": 1,
+  "target_flagged": {
+   "avg_review_score": false
+  },
+  "detection": {
+   "avg_review_score": {
+    "pct_change": -0.02337238703148014,
+    "z_score": 0.7483375458815646,
+    "significant": false
+   }
+  }
+ },
+ {
+  "id": "s06_freight_spike",
+  "affected": [
+   833
+  ],
+  "level": 1,
+  "target_flagged": {
+   "freight_ratio": true
+  },
+  "detection": {
+   "freight_ratio": {
+    "pct_change": 0.12580695002728834,
+    "z_score": 3.4732127826515273,
+    "significant": true
+   }
+  }
+ },
+ {
+  "id": "s07_regional_demand_surge",
+  "affected": [
+   1283
+  ],
+  "level": 0,
+  "target_flagged": {
+   "orders": true
+  },
+  "detection": {
+   "orders": {
+    "pct_change": 0.1772580170638423,
+    "z_score": 2.0457737569041803,
+    "significant": true
+   }
+  }
+ },
+ {
+  "id": "s08_payment_mix_shift",
+  "affected": [
+   3298
+  ],
+  "level": 0,
+  "target_flagged": {},
+  "detection": {}
+ },
+ {
+  "id": "s09_cancellation_spike",
+  "affected": [
+   123
+  ],
+  "level": 0,
+  "target_flagged": {
+   "cancellation_rate": true
+  },
+  "detection": {
+   "cancellation_rate": {
+    "pct_change": 8.8941073766914,
+    "z_score": 5.122554479910613,
+    "significant": true
+   }
+  }
+ },
+ {
+  "id": "s10_big_ticket_category_drop",
+  "affected": [
+   536
+  ],
+  "level": 1,
+  "target_flagged": {
+   "aov": false
+  },
+  "detection": {
+   "aov": {
+    "pct_change": -0.026517948755874036,
+    "z_score": 0.9444683128346875,
+    "significant": false
+   }
+  }
+ },
+ {
+  "id": "s11_two_causes",
+  "affected": [
+   339,
+   289
+  ],
+  "level": 1,
+  "target_flagged": {
+   "revenue": false,
+   "late_rate": true
+  },
+  "detection": {
+   "revenue": {
+    "pct_change": -0.0421445026131535,
+    "z_score": 0.331457288476096,
+    "significant": false
+   },
+   "late_rate": {
+    "pct_change": 1.1827639352684305,
+    "z_score": -0.12502364667223395,
+    "significant": true
+   }
+  }
+ },
+ {
+  "id": "s12_decoy_broad_drop",
+  "affected": [
+   1031
+  ],
+  "level": 0,
+  "target_flagged": {
+   "revenue": true
+  },
+  "detection": {
+   "revenue": {
+    "pct_change": -0.16225675261150743,
+    "z_score": -0.8126528278382826,
+    "significant": true
+   }
+  }
+ }
+]
