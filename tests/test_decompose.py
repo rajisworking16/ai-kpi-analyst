@@ -83,3 +83,18 @@ def test_detect_not_flagged_for_small_change():
 def _kpis():
     from src.kpis import KPI_NAMES
     return KPI_NAMES
+
+
+def test_excess_share_zero_for_uniform_change():
+    seg = pd.DataFrame([("m0", "A", 80.0), ("m0", "B", 20.0), ("m1", "A", 72.0),
+                        ("m1", "B", 18.0)], columns=["period", "cat", "revenue"])
+    out = segment_contribution(seg, "cat", "revenue", "m0", "m1")
+    assert out["excess_contribution"].abs().max() == pytest.approx(0)
+
+
+def test_excess_share_flags_concentrated_drop():
+    seg = pd.DataFrame([("m0", "A", 80.0), ("m0", "B", 20.0), ("m1", "A", 80.0),
+                        ("m1", "B", 10.0)], columns=["period", "cat", "revenue"])
+    out = segment_contribution(seg, "cat", "revenue", "m0", "m1").set_index("segment")
+    assert out.at["B", "excess_share"] == pytest.approx(0.8)
+    assert out.at["A", "excess_share"] == pytest.approx(-0.8)

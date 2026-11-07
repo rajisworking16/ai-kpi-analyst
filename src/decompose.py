@@ -54,6 +54,19 @@ def additive_contribution(seg: pd.DataFrame, dim: str, kpi: str, prev: str, mont
     total = out["change"].sum()
     out["share_of_change"] = out["change"] / total if total else np.nan
     out["contribution"] = out["change"]
+    prev_total = out["value_prev"].sum()
+    out["volume_share"] = out["value_prev"] / prev_total if prev_total else np.nan
+    return _add_excess(out, total)
+
+
+def _add_excess(out: pd.DataFrame, total: float) -> pd.DataFrame:
+    """Contribution beyond what the segment's prior size predicts.
+
+    If a change were spread evenly, every segment would contribute volume_share * total and
+    its excess would be ~0. A concentrated cause shows up as a large excess.
+    """
+    out["excess_contribution"] = out["contribution"] - out["volume_share"] * total
+    out["excess_share"] = out["excess_contribution"] / total if total else np.nan
     return out
 
 
@@ -85,7 +98,15 @@ def rate_contribution(seg: pd.DataFrame, dim: str, kpi: str, prev: str, month: s
     out["contribution"] = out["rate_effect"] + out["mix_effect"]
     total = out["contribution"].sum()
     out["share_of_change"] = out["contribution"] / total if total else np.nan
-    return out
+    out["volume_share"] = out["weight_prev"]
+    return _add_excess(out, total)
+
+
+def top_excess_driver(df: pd.DataFrame) -> pd.Series | None:
+    """Row with the largest absolute excess contribution, or None for an empty table."""
+    if df.empty:
+        return None
+    return df.loc[df["excess_contribution"].abs().idxmax()]
 
 
 def segment_contribution(seg: pd.DataFrame, dim: str, kpi: str, prev: str, month: str,

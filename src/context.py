@@ -14,7 +14,7 @@ from pathlib import Path
 import duckdb
 import pandas as pd
 
-from src.decompose import decompose
+from src.decompose import decompose, top_excess_driver
 from src.detect import KPIChange, detect_from_table, shift_month
 from src.kpis import DIMENSIONS, KPI_DEFINITIONS, monthly_kpis
 
@@ -143,9 +143,10 @@ def table_markdown(rows: list[dict], columns: list[str] | None = None,
     return "\n".join(lines)
 
 
-DECOMP_COLUMNS_ADDITIVE = ["segment", "value_prev", "value_curr", "change", "share_of_change"]
+DECOMP_COLUMNS_ADDITIVE = ["segment", "value_prev", "value_curr", "change", "share_of_change",
+                           "volume_share", "excess_share"]
 DECOMP_COLUMNS_RATE = ["segment", "value_prev", "value_curr", "change", "weight_prev",
-                       "weight_curr", "rate_effect", "mix_effect", "share_of_change"]
+                       "rate_effect", "mix_effect", "share_of_change", "excess_share"]
 
 
 def facts_text(ctx: AnalysisContext) -> str:
@@ -159,6 +160,17 @@ def facts_text(ctx: AnalysisContext) -> str:
         flag = "significant" if c.significant else "not significant"
         lines.append(f"- {kpi} went {c.direction.upper()} from {fmt(c.previous)} in {prev} to "
                      f"{fmt(c.current)} in {ctx.month} ({pct}, {flag}).")
+        drivers = []
+        for dim, df in ctx.decomposition["segments"][kpi].items():
+            top = top_excess_driver(df)
+            if top is not None:
+                drivers.append((abs(float(top["excess_contribution"])), dim, top))
+        drivers.sort(key=lambda d: -d[0])
+        for _size, dim, top in drivers:
+            lines.append(f"  - {dim}: most disproportionate segment {top['segment']} "
+                         f"(contribution {fmt(float(top['contribution']))}, volume_share "
+                         f"{fmt(float(top['volume_share']))}, excess_share "
+                         f"{fmt(float(top['excess_share']))})")
     s = ctx.decomposition["revenue_split"]
     if "revenue" in ctx.focus_kpis or "aov" in ctx.focus_kpis or "orders" in ctx.focus_kpis:
         lines.append(f"- Revenue change {fmt(s['total_change'])} = volume effect "
