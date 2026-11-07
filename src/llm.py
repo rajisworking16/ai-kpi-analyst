@@ -81,7 +81,18 @@ def chat_json(
     last_err = ""
     for attempt in range(retries + 1):
         start = time.perf_counter()
-        resp = _chat_with_retry(model, msgs, schema, options)
+        try:
+            resp = _chat_with_retry(model, msgs, schema, options)
+        except ollama.ResponseError as e:
+            # Ollama aborts generations that loop ("token repeat limit reached").
+            last_err = f"generation aborted: {e.error}"
+            log.warning("llm %s: %s", schema.__name__, last_err)
+            if stats is not None:
+                stats.calls += 1
+                stats.retries += int(attempt > 0)
+            msgs = [*msgs, {"role": "user", "content": "Your previous answer repeated itself "
+                            "and was cut off. Answer again briefly, without repeating text."}]
+            continue
         elapsed = time.perf_counter() - start
         content = resp.message.content or ""
         log.info("llm %s: %.1fs, prompt %s tok, output %s tok", schema.__name__, elapsed,
