@@ -2,60 +2,60 @@
  "n_scenarios": 12,
  "model": "qwen2.5:7b",
  "prompt_version": "v4",
- "git_commit": "573d664",
+ "git_commit": "6e33d22",
  "hardware": "Apple M5, 24 GB RAM, macOS 26.7.2",
- "generated": "2026-11-08T02:09:05",
+ "generated": "2026-11-08T03:32:05",
  "configs": {
   "A": {
    "name": "Baseline (LLM only)",
-   "n_runs": 2,
+   "n_runs": 12,
    "runs_per_scenario": 1,
-   "hit1": 0.0,
-   "hit3": 0.0,
-   "hit1_rate": 0.0,
-   "hit3_rate": 0.0,
-   "unsupported_rate": 0.1,
-   "unsupported_numbers": 1,
-   "total_numbers": 10,
-   "unsupported_rate_before_revision": 0.1,
+   "hit1": 1.0,
+   "hit3": 1.0,
+   "hit1_rate": 0.083,
+   "hit3_rate": 0.083,
+   "unsupported_rate": 0.298,
+   "unsupported_numbers": 25,
+   "total_numbers": 84,
+   "unsupported_rate_before_revision": 0.298,
    "mean_steps": 1.0,
-   "mean_time_s": 50.5,
+   "mean_time_s": 46.9,
    "errors": 0,
    "revised_runs": 0
   },
   "B": {
    "name": "Agent",
-   "n_runs": 1,
+   "n_runs": 12,
    "runs_per_scenario": 1,
-   "hit1": 1.0,
-   "hit3": 1.0,
-   "hit1_rate": 1.0,
-   "hit3_rate": 1.0,
-   "unsupported_rate": 0.0,
-   "unsupported_numbers": 0,
-   "total_numbers": 6,
-   "unsupported_rate_before_revision": 0.0,
-   "mean_steps": 11.0,
-   "mean_time_s": 321.3,
-   "errors": 0,
+   "hit1": 4.5,
+   "hit3": 7.0,
+   "hit1_rate": 0.375,
+   "hit3_rate": 0.583,
+   "unsupported_rate": 0.015,
+   "unsupported_numbers": 1,
+   "total_numbers": 67,
+   "unsupported_rate_before_revision": 0.015,
+   "mean_steps": 9.8,
+   "mean_time_s": 216.0,
+   "errors": 1,
    "revised_runs": 0
   },
   "C": {
    "name": "Agent + verifier revision",
-   "n_runs": 1,
+   "n_runs": 12,
    "runs_per_scenario": 1,
-   "hit1": 0.0,
-   "hit3": 0.0,
-   "hit1_rate": 0.0,
-   "hit3_rate": 0.0,
-   "unsupported_rate": null,
+   "hit1": 5.5,
+   "hit3": 7.0,
+   "hit1_rate": 0.458,
+   "hit3_rate": 0.583,
+   "unsupported_rate": 0.0,
    "unsupported_numbers": 0,
-   "total_numbers": 0,
-   "unsupported_rate_before_revision": null,
-   "mean_steps": 0.0,
-   "mean_time_s": 95.9,
+   "total_numbers": 56,
+   "unsupported_rate_before_revision": 0.018,
+   "mean_steps": 9.6,
+   "mean_time_s": 185.6,
    "errors": 1,
-   "revised_runs": 0
+   "revised_runs": 1
   }
  },
  "per_scenario": {
@@ -71,9 +71,9 @@
     "top": "category=health_beauty"
    },
    "C": {
-    "hit1": 0.0,
-    "hit3": 0.0,
-    "top": "="
+    "hit1": 1.0,
+    "hit3": 1.0,
+    "top": "category=health_beauty"
    }
   },
   "s02_category_price_hike": {
@@ -81,17 +81,187 @@
     "hit1": 0.0,
     "hit3": 0.0,
     "top": "overall=all"
+   },
+   "B": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "customer_state=SP"
+   },
+   "C": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "customer_state=SP"
    }
   },
-  "s03_top_seller_dropout": {},
-  "s04_regional_delivery_delay": {},
-  "s05_delay_hurts_reviews": {},
-  "s06_freight_spike": {},
-  "s07_regional_demand_surge": {},
-  "s08_payment_mix_shift": {},
-  "s09_cancellation_spike": {},
-  "s10_big_ticket_category_drop": {},
-  "s11_two_causes": {},
-  "s12_decoy_broad_drop": {}
+  "s03_top_seller_dropout": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "orders=all"
+   },
+   "B": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   },
+   "C": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   }
+  },
+  "s04_regional_delivery_delay": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   },
+   "B": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "="
+   },
+   "C": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "="
+   }
+  },
+  "s05_delay_hurts_reviews": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   },
+   "B": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "category=watches_gifts"
+   },
+   "C": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   }
+  },
+  "s06_freight_spike": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "freight_value=all"
+   },
+   "B": {
+    "hit1": 1.0,
+    "hit3": 1.0,
+    "top": "customer_state=RJ"
+   },
+   "C": {
+    "hit1": 1.0,
+    "hit3": 1.0,
+    "top": "customer_state=RJ"
+   }
+  },
+  "s07_regional_demand_surge": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   },
+   "B": {
+    "hit1": 1.0,
+    "hit3": 1.0,
+    "top": "customer_state=SP"
+   },
+   "C": {
+    "hit1": 1.0,
+    "hit3": 1.0,
+    "top": "customer_state=SP"
+   }
+  },
+  "s08_payment_mix_shift": {
+   "A": {
+    "hit1": 1.0,
+    "hit3": 1.0,
+    "top": "payment_type=credit_card"
+   },
+   "B": {
+    "hit1": 0.0,
+    "hit3": 1.0,
+    "top": "overall=all"
+   },
+   "C": {
+    "hit1": 1.0,
+    "hit3": 1.0,
+    "top": "payment_type=voucher"
+   }
+  },
+  "s09_cancellation_spike": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   },
+   "B": {
+    "hit1": 0.0,
+    "hit3": 1.0,
+    "top": "customer_state=SC"
+   },
+   "C": {
+    "hit1": 0.0,
+    "hit3": 1.0,
+    "top": "customer_state=SC"
+   }
+  },
+  "s10_big_ticket_category_drop": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   },
+   "B": {
+    "hit1": 1.0,
+    "hit3": 1.0,
+    "top": "category=watches_gifts"
+   },
+   "C": {
+    "hit1": 1.0,
+    "hit3": 1.0,
+    "top": "category=watches_gifts"
+   }
+  },
+  "s11_two_causes": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "seller_id=10000000000000000000000000000001"
+   },
+   "B": {
+    "hit1": 0.5,
+    "hit3": 1.0,
+    "top": "category=sports_leisure"
+   },
+   "C": {
+    "hit1": 0.5,
+    "hit3": 1.0,
+    "top": "category=sports_leisure"
+   }
+  },
+  "s12_decoy_broad_drop": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   },
+   "B": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "payment_type=credit_card"
+   },
+   "C": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "customer_state=SP"
+   }
+  }
  }
 }

@@ -1,0 +1,498 @@
+{
+ "run_id": "s05_delay_hurts_reviews_C_r1",
+ "mode": "agent_verify",
+ "db_path": "/Users/rajkandula/projects/ai-kpi-analyst/data/eval/s05_delay_hurts_reviews.duckdb",
+ "month": "2018-05",
+ "question": "Why did review scores fall?",
+ "model": "qwen2.5:7b",
+ "prompt_version": "v4",
+ "focus_kpis": [
+  "avg_review_score"
+ ],
+ "detection": [
+  {
+   "kpi": "revenue",
+   "current": 977544.6899999987,
+   "previous": 973534.0899999981,
+   "pct_change": 0.0041196297502027555,
+   "z_score": 0.7721389163712399,
+   "trailing_mean": 898628.5049999988,
+   "trailing_std": 102204.64650438288,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "orders",
+   "current": 6749.0,
+   "previous": 6798.0,
+   "pct_change": -0.007208002353633422,
+   "z_score": 0.07010930472255374,
+   "trailing_mean": 6704.5,
+   "trailing_std": 634.7231680031855,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "aov",
+   "current": 144.8428937620386,
+   "previous": 143.20889820535425,
+   "pct_change": 0.011409874506130914,
+   "z_score": 1.8762311695759413,
+   "trailing_mean": 133.90562524150948,
+   "trailing_std": 5.82938216669811,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "freight_ratio",
+   "current": 0.15470375067967485,
+   "previous": 0.16367669261586934,
+   "pct_change": -0.054821134229862366,
+   "z_score": -2.517729511619739,
+   "trailing_mean": 0.1671284546672139,
+   "trailing_std": 0.004934884359180361,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "avg_delivery_days",
+   "current": 12.456219630274443,
+   "previous": 11.499241053673193,
+   "pct_change": 0.08322102059905621,
+   "z_score": -1.2622583396193727,
+   "trailing_mean": 14.897066939923869,
+   "trailing_std": 1.9337145440333954,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "late_rate",
+   "current": 0.09779226552081789,
+   "previous": 0.04501323918799647,
+   "pct_change": 1.1725222908840525,
+   "z_score": -0.13325891649202337,
+   "trailing_mean": 0.10525208645936807,
+   "trailing_std": 0.05597990089463698,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_review_score",
+   "current": 4.0652142126041815,
+   "previous": 4.162501816068575,
+   "pct_change": -0.02337238703148014,
+   "z_score": 0.7483375458815646,
+   "trailing_mean": 3.9524831868289247,
+   "trailing_std": 0.15064194813646042,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "cancellation_rate",
+   "current": 0.003491924923614142,
+   "previous": 0.00216169476869866,
+   "pct_change": 0.6153644696639021,
+   "z_score": -0.36745506143154244,
+   "trailing_mean": 0.004689740350527282,
+   "trailing_std": 0.0032597603153067334,
+   "direction": "up",
+   "significant": true
+  }
+ ],
+ "revenue_split": {
+  "revenue_prev": 973534.0899999972,
+  "revenue_curr": 977544.6899999975,
+  "volume_effect": -7017.236012062351,
+  "aov_effect": 11107.901794340143,
+  "interaction": -80.06578227753266,
+  "total_change": 4010.600000000326
+ },
+ "hypotheses": [
+  {
+   "id": "H1",
+   "statement": "The decrease in review scores is primarily driven by the segment 'watches_gifts'.",
+   "dimension": "category",
+   "segment": "watches_gifts",
+   "test": "The review scores for the 'watches_gifts' category have significantly decreased in 2018-05 compared to 2018-04.",
+   "status": "rejected",
+   "evidence_query_ids": [
+    "q_1aa5fd"
+   ]
+  },
+  {
+   "id": "H2",
+   "statement": "The decrease in review scores is due to a higher proportion of orders using the 'credit_card' payment method.",
+   "dimension": "payment_type",
+   "segment": "credit_card",
+   "test": "The average review score for orders using the 'credit_card' payment method has decreased in 2018-05 compared to 2018-04.",
+   "status": "rejected",
+   "evidence_query_ids": [
+    "q_e661a5"
+   ]
+  },
+  {
+   "id": "H3",
+   "statement": "The decrease in review scores is related to the performance of the seller '7d13fca15225358621be4086e1eb0964'.",
+   "dimension": "seller_id",
+   "segment": "7d13fca15225358621be4086e1eb0964",
+   "test": "The average review score for orders from the seller '7d13fca15225358621be4086e1eb0964' has decreased in 2018-05 compared to 2018-04.",
+   "status": "rejected",
+   "evidence_query_ids": [
+    "q_feca41"
+   ]
+  },
+  {
+   "id": "H4",
+   "statement": "The overall decrease in review scores is due to a general decline in customer satisfaction across all segments.",
+   "dimension": "general",
+   "segment": "general",
+   "test": "The average review score has decreased across all segments in 2018-05 compared to 2018-04.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_100347"
+   ]
+  }
+ ],
+ "steps": [
+  {
+   "step": 1,
+   "action": "propose_hypotheses",
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "The decrease in review scores is primarily driven by the segment 'watches_gifts'.",
+     "dimension": "category",
+     "segment": "watches_gifts",
+     "test": "The review scores for the 'watches_gifts' category have significantly decreased in 2018-05 compared to 2018-04.",
+     "status": "rejected",
+     "evidence_query_ids": [
+      "q_1aa5fd"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "The decrease in review scores is due to a higher proportion of orders using the 'credit_card' payment method.",
+     "dimension": "payment_type",
+     "segment": "credit_card",
+     "test": "The average review score for orders using the 'credit_card' payment method has decreased in 2018-05 compared to 2018-04.",
+     "status": "rejected",
+     "evidence_query_ids": [
+      "q_e661a5"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "The decrease in review scores is related to the performance of the seller '7d13fca15225358621be4086e1eb0964'.",
+     "dimension": "seller_id",
+     "segment": "7d13fca15225358621be4086e1eb0964",
+     "test": "The average review score for orders from the seller '7d13fca15225358621be4086e1eb0964' has decreased in 2018-05 compared to 2018-04.",
+     "status": "rejected",
+     "evidence_query_ids": [
+      "q_feca41"
+     ]
+    },
+    {
+     "id": "H4",
+     "statement": "The overall decrease in review scores is due to a general decline in customer satisfaction across all segments.",
+     "dimension": "general",
+     "segment": "general",
+     "test": "The average review score has decreased across all segments in 2018-05 compared to 2018-04.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_100347"
+     ]
+    }
+   ]
+  },
+  {
+   "step": 2,
+   "action": "run_sql",
+   "hypothesis_id": "H1",
+   "reason": "Test if the 'watches_gifts' category significantly contributed to the decrease in review scores.",
+   "sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT o.customer_state, AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched o JOIN reviews r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' AND o.category = 'watches_gifts' GROUP BY o.customer_state ORDER BY avg_review_score DESC LIMIT 10; ",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_1aa5fd",
+   "error": null,
+   "row_count": 10
+  },
+  {
+   "step": 3,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H1",
+   "reason": "The average review scores for the 'watches_gifts' category are higher in 2018-05 compared to 2018-04, which contradicts the hypothesis.",
+   "sql": "",
+   "status": "rejected",
+   "evidence_query_ids": [
+    "q_1aa5fd"
+   ]
+  },
+  {
+   "step": 4,
+   "action": "run_sql",
+   "hypothesis_id": "H2",
+   "reason": "Test if the 'credit_card' payment method significantly contributed to the decrease in review scores.",
+   "sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT payment_type, AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched o JOIN reviews r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' AND o.payment_type = 'credit_card' GROUP BY payment_type ORDER BY avg_review_score DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_e661a5",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 5,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H2",
+   "reason": "The average review score for orders using the 'credit_card' payment method is 4.0851, which is slightly lower than the overall average but not significantly different, suggesting that the 'credit_card' payment method did not significantly contribute to the decrease in review scores.",
+   "sql": "",
+   "status": "rejected",
+   "evidence_query_ids": [
+    "q_e661a5"
+   ]
+  },
+  {
+   "step": 6,
+   "action": "run_sql",
+   "hypothesis_id": "H3",
+   "reason": "Test if the performance of the seller '7d13fca15225358621be4086e1eb0964' significantly contributed to the decrease in review scores.",
+   "sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT seller_id, AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched o JOIN reviews r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' AND o.seller_id = '7d13fca15225358621be4086e1eb0964' GROUP BY seller_id ORDER BY avg_review_score DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_feca41",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 7,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H3",
+   "reason": "The average review score for orders from the seller '7d13fca15225358621be4086e1eb0964' is 4.1195, which is slightly higher than the overall average, suggesting that this seller did not significantly contribute to the decrease in review scores.",
+   "sql": "",
+   "status": "rejected",
+   "evidence_query_ids": [
+    "q_feca41"
+   ]
+  },
+  {
+   "step": 8,
+   "action": "run_sql",
+   "hypothesis_id": "H4",
+   "reason": "Test if the overall decrease in review scores is due to a general decline in customer satisfaction across all segments.",
+   "sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched o JOIN reviews r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' GROUP BY o.order_month ORDER BY o.order_month DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_100347",
+   "error": null,
+   "row_count": 2
+  },
+  {
+   "step": 9,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H4",
+   "reason": "The average review scores for both 2018-04 and 2018-05 are 4.115 and 4.0392, respectively, indicating a slight overall decrease. This supports the hypothesis that the overall decrease in review scores is due to a general decline in customer satisfaction across all segments.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_100347"
+   ]
+  },
+  {
+   "step": 10,
+   "action": "final_report"
+  }
+ ],
+ "queries": [
+  {
+   "query_id": "q_1aa5fd",
+   "sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT o.customer_state, AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched o JOIN reviews r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' AND o.category = 'watches_gifts' GROUP BY o.customer_state ORDER BY avg_review_score DESC LIMIT 10;",
+   "executed_sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT o.customer_state, AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched AS o JOIN reviews AS r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' AND o.category = 'watches_gifts' GROUP BY o.customer_state ORDER BY avg_review_score DESC LIMIT 10",
+   "columns": [
+    "customer_state",
+    "avg_review_score"
+   ],
+   "rows": [
+    {
+     "customer_state": "AP",
+     "avg_review_score": 5.0
+    },
+    {
+     "customer_state": "RN",
+     "avg_review_score": 4.833333333333333
+    },
+    {
+     "customer_state": "RO",
+     "avg_review_score": 4.666666666666667
+    },
+    {
+     "customer_state": "GO",
+     "avg_review_score": 4.466666666666667
+    },
+    {
+     "customer_state": "PA",
+     "avg_review_score": 4.4
+    },
+    {
+     "customer_state": "DF",
+     "avg_review_score": 4.333333333333333
+    },
+    {
+     "customer_state": "SP",
+     "avg_review_score": 4.302132701421801
+    },
+    {
+     "customer_state": "ES",
+     "avg_review_score": 4.285714285714286
+    },
+    {
+     "customer_state": "MT",
+     "avg_review_score": 4.230769230769231
+    },
+    {
+     "customer_state": "PB",
+     "avg_review_score": 4.222222222222222
+    }
+   ],
+   "row_count": 10,
+   "error": null,
+   "elapsed_s": 0.068,
+   "hypothesis_id": "H1"
+  },
+  {
+   "query_id": "q_e661a5",
+   "sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT payment_type, AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched o JOIN reviews r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' AND o.payment_type = 'credit_card' GROUP BY payment_type ORDER BY avg_review_score DESC LIMIT 10;",
+   "executed_sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT payment_type, AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched AS o JOIN reviews AS r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' AND o.payment_type = 'credit_card' GROUP BY payment_type ORDER BY avg_review_score DESC LIMIT 10",
+   "columns": [
+    "payment_type",
+    "avg_review_score"
+   ],
+   "rows": [
+    {
+     "payment_type": "credit_card",
+     "avg_review_score": 4.085115234212497
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.074,
+   "hypothesis_id": "H2"
+  },
+  {
+   "query_id": "q_feca41",
+   "sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT seller_id, AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched o JOIN reviews r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' AND o.seller_id = '7d13fca15225358621be4086e1eb0964' GROUP BY seller_id ORDER BY avg_review_score DESC LIMIT 10;",
+   "executed_sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT seller_id, AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched AS o JOIN reviews AS r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' AND o.seller_id = '7d13fca15225358621be4086e1eb0964' GROUP BY seller_id ORDER BY avg_review_score DESC LIMIT 10",
+   "columns": [
+    "seller_id",
+    "avg_review_score"
+   ],
+   "rows": [
+    {
+     "seller_id": "7d13fca15225358621be4086e1eb0964",
+     "avg_review_score": 4.119496855345912
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.055,
+   "hypothesis_id": "H3"
+  },
+  {
+   "query_id": "q_100347",
+   "sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched o JOIN reviews r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' GROUP BY o.order_month ORDER BY o.order_month DESC LIMIT 10;",
+   "executed_sql": "WITH reviews AS (SELECT order_id, AVG(review_score) AS avg_review_score FROM reviews GROUP BY order_id) SELECT AVG(r.avg_review_score) AS avg_review_score FROM orders_enriched AS o JOIN reviews AS r ON o.order_id = r.order_id WHERE o.order_month IN ('2018-04', '2018-05') AND o.order_status = 'delivered' GROUP BY o.order_month ORDER BY o.order_month DESC LIMIT 10",
+   "columns": [
+    "avg_review_score"
+   ],
+   "rows": [
+    {
+     "avg_review_score": 4.039194233492084
+    },
+    {
+     "avg_review_score": 4.114993564993565
+    }
+   ],
+   "row_count": 2,
+   "error": null,
+   "elapsed_s": 0.064,
+   "hypothesis_id": "H4"
+  }
+ ],
+ "revised": false,
+ "verification_before_revision": null,
+ "forced_final": false,
+ "report": {
+  "summary": "The overall decrease in review scores from 2018-04 to 2018-05 is primarily due to a general decline in customer satisfaction across all segments. This broad-based decline is supported by the overall average review scores for both months.",
+  "findings": [
+   {
+    "claim": "The overall decrease in review scores is due to a general decline in customer satisfaction across all segments.",
+    "kpi": "avg_review_score",
+    "dimension": "overall",
+    "segment": "all",
+    "numbers": [
+     {
+      "value": 4.115,
+      "meaning": "Average review score in 2018-04"
+     },
+     {
+      "value": 4.0392,
+      "meaning": "Average review score in 2018-05"
+     }
+    ],
+    "evidence_query_ids": [
+     "q_100347"
+    ],
+    "confidence": "high"
+   }
+  ],
+  "investigate_next": [
+   {
+    "item": "Explore other KPIs such as cancellation rates, freight ratios, and delivery times to understand the broader impact on customer satisfaction.",
+    "why": "These KPIs can provide additional context on the overall customer experience and identify any specific issues that may be contributing to the decline in review scores.",
+    "data_needed": "Additional KPI data for 2018-04 and 2018-05."
+   },
+   {
+    "item": "Analyze customer feedback and reviews in more detail to identify common themes or specific issues that customers are experiencing.",
+    "why": "Detailed analysis of customer feedback can help pinpoint specific areas for improvement and identify any recurring issues that may be affecting customer satisfaction.",
+    "data_needed": "Customer feedback and review text data."
+   }
+  ]
+ },
+ "verification": {
+  "findings": [
+   {
+    "index": 0,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": 4.115,
+      "text": "4.115",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "q_100347"
+     },
+     {
+      "value": 4.0392,
+      "text": "4.0392",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "q_100347"
+     }
+    ],
+    "valid_ids": [
+     "q_100347"
+    ],
+    "invalid_ids": []
+   }
+  ],
+  "summary_numbers": [],
+  "total_numbers": 2,
+  "unsupported_numbers": 0,
+  "unsupported_rate": 0.0
+ },
+ "n_steps": 10,
+ "llm_calls": 10,
+ "llm_retries": 0,
+ "llm_seconds": 142.6,
+ "prompt_tokens": 57843,
+ "output_tokens": 2025,
+ "elapsed_s": 143.23
+}

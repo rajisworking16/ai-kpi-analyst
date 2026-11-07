@@ -10,6 +10,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BANNED_SUFFIXES = {".csv", ".duckdb", ".parquet", ".env"}
 MAX_BYTES = 5 * 1024 * 1024
+# Eval outputs the spec asks to commit (one row per eval run, no dataset rows).
+ALLOWED = {"results/eval_runs.csv"}
 SECRET_PATTERNS = [
     re.compile(r"gh[pousr]_[A-Za-z0-9]{30,}"),                 # GitHub tokens
     re.compile(r"AKIA[0-9A-Z]{16}"),                            # AWS access key
@@ -30,7 +32,7 @@ def check(files: list[Path]) -> list[str]:
     problems = []
     for f in files:
         rel = f.relative_to(ROOT)
-        if f.suffix.lower() in BANNED_SUFFIXES or f.name == ".env":
+        if (f.suffix.lower() in BANNED_SUFFIXES or f.name == ".env") and str(rel) not in ALLOWED:
             problems.append(f"banned file type tracked: {rel}")
         if not f.exists():
             continue

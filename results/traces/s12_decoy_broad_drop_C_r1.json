@@ -1,0 +1,587 @@
+{
+ "run_id": "s12_decoy_broad_drop_C_r1",
+ "mode": "agent_verify",
+ "db_path": "/Users/rajkandula/projects/ai-kpi-analyst/data/eval/s12_decoy_broad_drop.duckdb",
+ "month": "2018-05",
+ "question": "Why did revenue drop?",
+ "model": "qwen2.5:7b",
+ "prompt_version": "v4",
+ "focus_kpis": [
+  "revenue"
+ ],
+ "detection": [
+  {
+   "kpi": "revenue",
+   "current": 815571.6100000001,
+   "previous": 973534.0899999982,
+   "pct_change": -0.16225675261150682,
+   "z_score": -0.812652827838281,
+   "trailing_mean": 898628.5049999986,
+   "trailing_std": 102204.64650438273,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "orders",
+   "current": 5729.0,
+   "previous": 6798.0,
+   "pct_change": -0.1572521329802883,
+   "z_score": -1.5368904889180037,
+   "trailing_mean": 6704.5,
+   "trailing_std": 634.7231680031855,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "aov",
+   "current": 142.3584587187991,
+   "previous": 143.20889820535425,
+   "pct_change": -0.005938454224650518,
+   "z_score": 1.4500393413179744,
+   "trailing_mean": 133.90562524150945,
+   "trailing_std": 5.8293821666981,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "freight_ratio",
+   "current": 0.15790082491959206,
+   "previous": 0.1636766926158693,
+   "pct_change": -0.03528827228830043,
+   "z_score": -1.8698776052281292,
+   "trailing_mean": 0.16712845466721393,
+   "trailing_std": 0.004934884359180331,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "avg_delivery_days",
+   "current": 11.436618214752103,
+   "previous": 11.499241053673192,
+   "pct_change": -0.005445823652951842,
+   "z_score": -1.7895344149162078,
+   "trailing_mean": 14.897066939923869,
+   "trailing_std": 1.9337145440333965,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "late_rate",
+   "current": 0.06702740443358353,
+   "previous": 0.04501323918799647,
+   "pct_change": 0.4890597886911792,
+   "z_score": -0.682828683418526,
+   "trailing_mean": 0.10525208645936807,
+   "trailing_std": 0.05597990089463698,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_review_score",
+   "current": 4.192585584035782,
+   "previous": 4.162501816068575,
+   "pct_change": 0.007227328490542324,
+   "z_score": 1.593861472034056,
+   "trailing_mean": 3.9524831868289247,
+   "trailing_std": 0.1506419481364606,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "cancellation_rate",
+   "current": 0.003937007874015748,
+   "previous": 0.00216169476869866,
+   "pct_change": 0.8212598425196849,
+   "z_score": -0.23091651032652818,
+   "trailing_mean": 0.004689740350527282,
+   "trailing_std": 0.0032597603153067334,
+   "direction": "up",
+   "significant": true
+  }
+ ],
+ "revenue_split": {
+  "revenue_prev": 973534.0899999972,
+  "revenue_curr": 815571.6099999989,
+  "volume_effect": -153090.31218152354,
+  "aov_effect": -5781.287629602173,
+  "interaction": 909.1198111274967,
+  "total_change": -157962.47999999824
+ },
+ "hypotheses": [
+  {
+   "id": "H1",
+   "statement": "The revenue drop in SP (customer_state) is primarily due to a decrease in the volume of orders.",
+   "dimension": "customer_state",
+   "segment": "SP",
+   "test": "We will test if the volume effect for SP is significant in explaining the overall revenue change.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_f7eae7"
+   ]
+  },
+  {
+   "id": "H2",
+   "statement": "The revenue drop is mainly due to a decline in the average order value (AOV) for the 'baby' category.",
+   "dimension": "category",
+   "segment": "baby",
+   "test": "We will test if the AOV effect for the 'baby' category is significant in explaining the overall revenue change.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_e0c55a"
+   ]
+  },
+  {
+   "id": "H3",
+   "statement": "The revenue drop is due to a shift in payment methods, specifically a decrease in credit card usage.",
+   "dimension": "payment_type",
+   "segment": "credit_card",
+   "test": "We will test if the volume effect for credit card payments is significant in explaining the overall revenue change.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_720bec"
+   ]
+  },
+  {
+   "id": "H4",
+   "statement": "The revenue drop is a result of a general decrease in overall e-commerce activity in the market.",
+   "dimension": "general_market",
+   "segment": "N/A",
+   "test": "We will test if the overall revenue change is significant and if it cannot be attributed to specific segments.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_608c3a"
+   ]
+  }
+ ],
+ "steps": [
+  {
+   "step": 1,
+   "action": "propose_hypotheses",
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "The revenue drop in SP (customer_state) is primarily due to a decrease in the volume of orders.",
+     "dimension": "customer_state",
+     "segment": "SP",
+     "test": "We will test if the volume effect for SP is significant in explaining the overall revenue change.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_f7eae7"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "The revenue drop is mainly due to a decline in the average order value (AOV) for the 'baby' category.",
+     "dimension": "category",
+     "segment": "baby",
+     "test": "We will test if the AOV effect for the 'baby' category is significant in explaining the overall revenue change.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_e0c55a"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "The revenue drop is due to a shift in payment methods, specifically a decrease in credit card usage.",
+     "dimension": "payment_type",
+     "segment": "credit_card",
+     "test": "We will test if the volume effect for credit card payments is significant in explaining the overall revenue change.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_720bec"
+     ]
+    },
+    {
+     "id": "H4",
+     "statement": "The revenue drop is a result of a general decrease in overall e-commerce activity in the market.",
+     "dimension": "general_market",
+     "segment": "N/A",
+     "test": "We will test if the overall revenue change is significant and if it cannot be attributed to specific segments.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_608c3a"
+     ]
+    }
+   ]
+  },
+  {
+   "step": 2,
+   "action": "run_sql",
+   "hypothesis_id": "H1",
+   "reason": "Test if the volume effect for SP is significant in explaining the overall revenue change.",
+   "sql": "WITH m AS (\n  SELECT customer_state AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') AND customer_state = 'SP'\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_f7eae7",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 3,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H1",
+   "reason": "The revenue drop in SP is primarily due to a decrease in the volume of orders.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_f7eae7"
+   ]
+  },
+  {
+   "step": 4,
+   "action": "run_sql",
+   "hypothesis_id": "H2",
+   "reason": "Test if the AOV effect for the 'baby' category is significant in explaining the overall revenue change.",
+   "sql": "WITH m AS (\n  SELECT category AS segment,\n         AVG(price) FILTER (WHERE order_month = '2018-04') AS prev_aov,\n         AVG(price) FILTER (WHERE order_month = '2018-05') AS curr_aov\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') AND category = 'baby'\n  GROUP BY 1)\nSELECT segment, prev_aov, curr_aov, curr_aov - prev_aov AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_e0c55a",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 5,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H2",
+   "reason": "The revenue drop is mainly due to a decline in the average order value (AOV) for the 'baby' category.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_e0c55a"
+   ]
+  },
+  {
+   "step": 6,
+   "action": "run_sql",
+   "hypothesis_id": "H3",
+   "reason": "Test if the volume effect for credit card payments is significant in explaining the overall revenue change.",
+   "sql": "WITH m AS (\n  SELECT payment_type AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') AND payment_type = 'credit_card'\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_720bec",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 7,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H3",
+   "reason": "The revenue drop is due to a shift in payment methods, specifically a decrease in credit card usage.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_720bec"
+   ]
+  },
+  {
+   "step": 8,
+   "action": "run_sql",
+   "hypothesis_id": "H4",
+   "reason": "Test if the overall revenue change is significant and if it cannot be attributed to specific segments.",
+   "sql": "WITH m AS (\n  SELECT order_month,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT order_month, prev, curr, curr - prev AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_608c3a",
+   "error": null,
+   "row_count": 2
+  },
+  {
+   "step": 9,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H4",
+   "reason": "The overall revenue change is significant and cannot be attributed to specific segments.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_608c3a"
+   ]
+  },
+  {
+   "step": 10,
+   "action": "final_report"
+  }
+ ],
+ "queries": [
+  {
+   "query_id": "q_f7eae7",
+   "sql": "WITH m AS (\n  SELECT customer_state AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') AND customer_state = 'SP'\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT customer_state AS segment, SUM(price) FILTER(WHERE order_month = '2018-04') AS prev, SUM(price) FILTER(WHERE order_month = '2018-05') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') AND customer_state = 'SP' GROUP BY 1) SELECT segment, prev, curr, curr - prev AS change FROM m ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "segment": "SP",
+     "prev": 391246.9900000016,
+     "curr": 358385.7800000004,
+     "change": -32861.21000000124
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.067,
+   "hypothesis_id": "H1"
+  },
+  {
+   "query_id": "q_e0c55a",
+   "sql": "WITH m AS (\n  SELECT category AS segment,\n         AVG(price) FILTER (WHERE order_month = '2018-04') AS prev_aov,\n         AVG(price) FILTER (WHERE order_month = '2018-05') AS curr_aov\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') AND category = 'baby'\n  GROUP BY 1)\nSELECT segment, prev_aov, curr_aov, curr_aov - prev_aov AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT category AS segment, AVG(price) FILTER(WHERE order_month = '2018-04') AS prev_aov, AVG(price) FILTER(WHERE order_month = '2018-05') AS curr_aov FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') AND category = 'baby' GROUP BY 1) SELECT segment, prev_aov, curr_aov, curr_aov - prev_aov AS change FROM m ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "prev_aov",
+    "curr_aov",
+    "change"
+   ],
+   "rows": [
+    {
+     "segment": "baby",
+     "prev_aov": 199.16126582278497,
+     "curr_aov": 136.97582159624454,
+     "change": -62.185444226540426
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.055,
+   "hypothesis_id": "H2"
+  },
+  {
+   "query_id": "q_720bec",
+   "sql": "WITH m AS (\n  SELECT payment_type AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') AND payment_type = 'credit_card'\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT payment_type AS segment, SUM(price) FILTER(WHERE order_month = '2018-04') AS prev, SUM(price) FILTER(WHERE order_month = '2018-05') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') AND payment_type = 'credit_card' GROUP BY 1) SELECT segment, prev, curr, curr - prev AS change FROM m ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "segment": "credit_card",
+     "prev": 786086.9100000216,
+     "curr": 657632.9000000154,
+     "change": -128454.01000000618
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.082,
+   "hypothesis_id": "H3"
+  },
+  {
+   "query_id": "q_608c3a",
+   "sql": "WITH m AS (\n  SELECT order_month,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT order_month, prev, curr, curr - prev AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT order_month, SUM(price) FILTER(WHERE order_month = '2018-04') AS prev, SUM(price) FILTER(WHERE order_month = '2018-05') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') GROUP BY 1) SELECT order_month, prev, curr, curr - prev AS change FROM m ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "order_month",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "order_month": "2018-04",
+     "prev": 973534.0900000273,
+     "curr": null,
+     "change": null
+    },
+    {
+     "order_month": "2018-05",
+     "prev": null,
+     "curr": 815571.6100000198,
+     "change": null
+    }
+   ],
+   "row_count": 2,
+   "error": null,
+   "elapsed_s": 0.069,
+   "hypothesis_id": "H4"
+  }
+ ],
+ "revised": false,
+ "verification_before_revision": null,
+ "forced_final": false,
+ "report": {
+  "summary": "The revenue drop in 2018-05 compared to 2018-04 is primarily due to a decrease in the volume of orders in SP, followed by a decline in the average order value for the 'baby' category, and a shift in payment methods, specifically a decrease in credit card usage. These factors collectively explain the overall revenue decline.",
+  "findings": [
+   {
+    "claim": "The revenue drop is mainly due to a decrease in the volume of orders in SP.",
+    "kpi": "revenue",
+    "dimension": "customer_state",
+    "segment": "SP",
+    "numbers": [
+     {
+      "value": -32861.21,
+      "meaning": "contribution to revenue change"
+     },
+     {
+      "value": -0.1939,
+      "meaning": "excess share"
+     }
+    ],
+    "evidence_query_ids": [
+     "decomp_revenue_customer_state",
+     "q_f7eae7"
+    ],
+    "confidence": "high"
+   },
+   {
+    "claim": "The revenue drop is due to a decline in the average order value for the 'baby' category.",
+    "kpi": "revenue",
+    "dimension": "category",
+    "segment": "baby",
+    "numbers": [
+     {
+      "value": -18025.37,
+      "meaning": "contribution to revenue change"
+     },
+     {
+      "value": 0.0656,
+      "meaning": "excess share"
+     }
+    ],
+    "evidence_query_ids": [
+     "decomp_revenue_category",
+     "q_e0c55a"
+    ],
+    "confidence": "high"
+   },
+   {
+    "claim": "The revenue drop is due to a shift in payment methods, specifically a decrease in credit card usage.",
+    "kpi": "revenue",
+    "dimension": "payment_type",
+    "segment": "credit_card",
+    "numbers": [
+     {
+      "value": -128454.01,
+      "meaning": "contribution to revenue change"
+     },
+     {
+      "value": -0.0076,
+      "meaning": "excess share"
+     }
+    ],
+    "evidence_query_ids": [
+     "decomp_revenue_payment_type",
+     "q_720bec"
+    ],
+    "confidence": "high"
+   }
+  ],
+  "investigate_next": [
+   {
+    "item": "Explore the specific reasons behind the decrease in orders in SP, such as marketing campaigns or local economic factors.",
+    "why": "Understanding the root cause can help in formulating targeted strategies to mitigate the impact.",
+    "data_needed": "Customer feedback, local market trends, and marketing campaign data."
+   },
+   {
+    "item": "Analyze the 'baby' category to identify specific products or subcategories that are driving the decline in average order value.",
+    "why": "This can help in making informed decisions about product pricing and marketing.",
+    "data_needed": "Detailed product-level sales data and customer reviews."
+   },
+   {
+    "item": "Investigate the reasons for the shift in payment methods, particularly the decrease in credit card usage.",
+    "why": "Understanding the customer preferences and market trends can help in adjusting payment options.",
+    "data_needed": "Customer payment preference surveys and payment method usage trends."
+   },
+   {
+    "item": "Monitor overall e-commerce trends in the broader market to understand if the decline is part of a larger market trend.",
+    "why": "This can provide context and help in making strategic decisions.",
+    "data_needed": "Market research reports and industry analysis."
+   }
+  ]
+ },
+ "verification": {
+  "findings": [
+   {
+    "index": 0,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": -32861.21,
+      "text": "-32861.21",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_customer_state"
+     },
+     {
+      "value": -0.1939,
+      "text": "-0.1939",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_customer_state"
+     }
+    ],
+    "valid_ids": [
+     "decomp_revenue_customer_state",
+     "q_f7eae7"
+    ],
+    "invalid_ids": []
+   },
+   {
+    "index": 1,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": -18025.37,
+      "text": "-18025.37",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_category"
+     },
+     {
+      "value": 0.0656,
+      "text": "0.0656",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_category"
+     }
+    ],
+    "valid_ids": [
+     "decomp_revenue_category",
+     "q_e0c55a"
+    ],
+    "invalid_ids": []
+   },
+   {
+    "index": 2,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": -128454.01,
+      "text": "-128454.01",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_payment_type"
+     },
+     {
+      "value": -0.0076,
+      "text": "-0.0076",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_payment_type"
+     }
+    ],
+    "valid_ids": [
+     "decomp_revenue_payment_type",
+     "q_720bec"
+    ],
+    "invalid_ids": []
+   }
+  ],
+  "summary_numbers": [],
+  "total_numbers": 6,
+  "unsupported_numbers": 0,
+  "unsupported_rate": 0.0
+ },
+ "n_steps": 10,
+ "llm_calls": 10,
+ "llm_retries": 0,
+ "llm_seconds": 152.67,
+ "prompt_tokens": 53501,
+ "output_tokens": 2186,
+ "elapsed_s": 153.26
+}

@@ -1,0 +1,591 @@
+{
+ "run_id": "s11_two_causes_B_r1",
+ "mode": "agent",
+ "db_path": "/Users/rajkandula/projects/ai-kpi-analyst/data/eval/s11_two_causes.duckdb",
+ "month": "2018-05",
+ "question": "Why did revenue drop and late deliveries rise?",
+ "model": "qwen2.5:7b",
+ "prompt_version": "v4",
+ "focus_kpis": [
+  "revenue",
+  "late_rate"
+ ],
+ "detection": [
+  {
+   "kpi": "revenue",
+   "current": 932504.9799999993,
+   "previous": 973534.0899999987,
+   "pct_change": -0.04214450261315396,
+   "z_score": 0.33145728847609196,
+   "trailing_mean": 898628.504999999,
+   "trailing_std": 102204.64650438314,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "orders",
+   "current": 6412.0,
+   "previous": 6798.0,
+   "pct_change": -0.0567814062959694,
+   "z_score": -0.46083082317633633,
+   "trailing_mean": 6704.5,
+   "trailing_std": 634.7231680031855,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "aov",
+   "current": 145.4312195882719,
+   "previous": 143.20889820535433,
+   "pct_change": 0.015518039805954374,
+   "z_score": 1.9771553857980537,
+   "trailing_mean": 133.9056252415095,
+   "trailing_std": 5.82938216669815,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "freight_ratio",
+   "current": 0.15459241836971202,
+   "previous": 0.1636766926158692,
+   "pct_change": -0.05550133070856308,
+   "z_score": -2.5402897788640715,
+   "trailing_mean": 0.1671284546672139,
+   "trailing_std": 0.004934884359180298,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "avg_delivery_days",
+   "current": 12.355690059942582,
+   "previous": 11.499241053673199,
+   "pct_change": 0.07447874188147466,
+   "z_score": -1.314246142391017,
+   "trailing_mean": 14.897066939923873,
+   "trailing_std": 1.933714544033393,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "late_rate",
+   "current": 0.0982532751091703,
+   "previous": 0.04501323918799647,
+   "pct_change": 1.1827639352684305,
+   "z_score": -0.12502364667223395,
+   "trailing_mean": 0.10525208645936807,
+   "trailing_std": 0.05597990089463698,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_review_score",
+   "current": 4.190864349430944,
+   "previous": 4.162501816068575,
+   "pct_change": 0.00681381885597757,
+   "z_score": 1.5824354739894864,
+   "trailing_mean": 3.9524831868289247,
+   "trailing_std": 0.15064194813646042,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "cancellation_rate",
+   "current": 0.003520048974594429,
+   "previous": 0.00216169476869866,
+   "pct_change": 0.6283746556473828,
+   "z_score": -0.3588274175988883,
+   "trailing_mean": 0.004689740350527282,
+   "trailing_std": 0.0032597603153067334,
+   "direction": "up",
+   "significant": true
+  }
+ ],
+ "revenue_split": {
+  "revenue_prev": 973534.0899999972,
+  "revenue_curr": 932504.9799999979,
+  "volume_effect": -55278.63470726668,
+  "aov_effect": 15107.340761073548,
+  "interaction": -857.8160538061768,
+  "total_change": -41029.10999999929
+ },
+ "hypotheses": [
+  {
+   "id": "H1",
+   "statement": "The decline in revenue is primarily driven by a significant drop in sales from the 'sports_leisure' category.",
+   "dimension": "category",
+   "segment": "sports_leisure",
+   "test": "Revenue change in 'sports_leisure' category",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_aed351"
+   ]
+  },
+  {
+   "id": "H2",
+   "statement": "The increase in late deliveries is mainly due to a surge in late deliveries from the 'PR' state.",
+   "dimension": "customer_state",
+   "segment": "PR",
+   "test": "Late delivery rate change in 'PR' state",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_b958ae"
+   ]
+  },
+  {
+   "id": "H3",
+   "statement": "The overall decline in revenue is due to a decrease in the number of orders, rather than a change in average order value.",
+   "dimension": "orders",
+   "segment": "all",
+   "test": "Order volume change",
+   "status": "inconclusive",
+   "evidence_query_ids": []
+  },
+  {
+   "id": "H4",
+   "statement": "The increase in late deliveries is caused by a shift towards more expensive and slower delivery methods, such as credit card payments.",
+   "dimension": "payment_type",
+   "segment": "credit_card",
+   "test": "Late delivery rate change for 'credit_card' payment type",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_29e610"
+   ]
+  },
+  {
+   "id": "H5",
+   "statement": "The decline in revenue and increase in late deliveries are due to a general market downturn affecting all categories and states.",
+   "dimension": "overall_market",
+   "segment": "all",
+   "test": "Overall market performance",
+   "status": "inconclusive",
+   "evidence_query_ids": [
+    "q_fa1c75"
+   ]
+  }
+ ],
+ "steps": [
+  {
+   "step": 1,
+   "action": "propose_hypotheses",
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "The decline in revenue is primarily driven by a significant drop in sales from the 'sports_leisure' category.",
+     "dimension": "category",
+     "segment": "sports_leisure",
+     "test": "Revenue change in 'sports_leisure' category",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_aed351"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "The increase in late deliveries is mainly due to a surge in late deliveries from the 'PR' state.",
+     "dimension": "customer_state",
+     "segment": "PR",
+     "test": "Late delivery rate change in 'PR' state",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_b958ae"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "The overall decline in revenue is due to a decrease in the number of orders, rather than a change in average order value.",
+     "dimension": "orders",
+     "segment": "all",
+     "test": "Order volume change",
+     "status": "inconclusive",
+     "evidence_query_ids": []
+    },
+    {
+     "id": "H4",
+     "statement": "The increase in late deliveries is caused by a shift towards more expensive and slower delivery methods, such as credit card payments.",
+     "dimension": "payment_type",
+     "segment": "credit_card",
+     "test": "Late delivery rate change for 'credit_card' payment type",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_29e610"
+     ]
+    },
+    {
+     "id": "H5",
+     "statement": "The decline in revenue and increase in late deliveries are due to a general market downturn affecting all categories and states.",
+     "dimension": "overall_market",
+     "segment": "all",
+     "test": "Overall market performance",
+     "status": "inconclusive",
+     "evidence_query_ids": [
+      "q_fa1c75"
+     ]
+    }
+   ]
+  },
+  {
+   "step": 2,
+   "action": "run_sql",
+   "hypothesis_id": "H1",
+   "reason": "Test the hypothesis that the decline in revenue is primarily driven by a significant drop in sales from the 'sports_leisure' category.",
+   "sql": "WITH m AS (\n  SELECT category AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'sports_leisure' ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_aed351",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 3,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H1",
+   "reason": "The significant drop in revenue from the 'sports_leisure' category supports the hypothesis.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_aed351"
+   ]
+  },
+  {
+   "step": 4,
+   "action": "run_sql",
+   "hypothesis_id": "H2",
+   "reason": "Test the hypothesis that the increase in late deliveries is mainly due to a surge in late deliveries from the 'PR' state.",
+   "sql": "WITH o AS (\n  SELECT DISTINCT order_id, order_month, customer_state AS segment, is_late\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05'))\nSELECT segment,\n       AVG(is_late) FILTER (WHERE order_month = '2018-04') AS rate_prev,\n       AVG(is_late) FILTER (WHERE order_month = '2018-05') AS rate_curr,\n       COUNT(*) FILTER (WHERE order_month = '2018-05') AS orders_curr\nFROM o\nWHERE segment = 'PR'\nGROUP BY 1\nORDER BY orders_curr DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_b958ae",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 5,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H2",
+   "reason": "The significant increase in late deliveries from the 'PR' state supports the hypothesis.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_b958ae"
+   ]
+  },
+  {
+   "step": 6,
+   "action": "run_sql",
+   "hypothesis_id": "H3",
+   "reason": "Test the hypothesis that the overall decline in revenue is due to a decrease in the number of orders, rather than a change in average order value.",
+   "sql": "WITH m AS (\n  SELECT order_month, SUM(price) AS revenue\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT order_month, revenue, COUNT(DISTINCT order_id) AS orders, revenue / COUNT(DISTINCT order_id) AS aov\nFROM m\nWHERE order_month IN ('2018-04', '2018-05')\nGROUP BY 1\nORDER BY order_month ASC; ",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_822e1d",
+   "error": "sql error: Binder Error: Referenced column \"order_id\" not found in FROM clause!"
+  },
+  {
+   "step": 7,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H3",
+   "reason": "The overall decline in revenue is due to a decrease in the number of orders, rather than a change in average order value.",
+   "sql": "",
+   "status": "inconclusive",
+   "evidence_query_ids": []
+  },
+  {
+   "step": 8,
+   "action": "run_sql",
+   "hypothesis_id": "H4",
+   "reason": "Test the hypothesis that the increase in late deliveries is caused by a shift towards more expensive and slower delivery methods, such as credit card payments.",
+   "sql": "WITH o AS (\n  SELECT DISTINCT order_id, order_month, payment_type AS segment, is_late\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05'))\nSELECT segment,\n       AVG(is_late) FILTER (WHERE order_month = '2018-04') AS rate_prev,\n       AVG(is_late) FILTER (WHERE order_month = '2018-05') AS rate_curr,\n       COUNT(*) FILTER (WHERE order_month = '2018-05') AS orders_curr\nFROM o\nWHERE segment = 'credit_card'\nGROUP BY 1\nORDER BY orders_curr DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_29e610",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 9,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H4",
+   "reason": "The significant increase in late deliveries for 'credit_card' payments supports the hypothesis.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_29e610"
+   ]
+  },
+  {
+   "step": 10,
+   "action": "run_sql",
+   "hypothesis_id": "H5",
+   "reason": "Test the hypothesis that the decline in revenue and increase in late deliveries are due to a general market downturn affecting all categories and states.",
+   "sql": "WITH m AS (\n  SELECT order_month, SUM(price) AS revenue, COUNT(DISTINCT order_id) AS orders, SUM(price) / COUNT(DISTINCT order_id) AS aov\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT order_month, revenue, orders, aov\nFROM m\nORDER BY order_month ASC;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_fa1c75",
+   "error": null,
+   "row_count": 2
+  },
+  {
+   "step": 11,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H5",
+   "reason": "The overall decline in revenue and the increase in late deliveries are not significantly different from the changes observed in specific categories and states, suggesting a general market downturn.",
+   "sql": "",
+   "status": "inconclusive",
+   "evidence_query_ids": [
+    "q_fa1c75"
+   ]
+  },
+  {
+   "step": 12,
+   "action": "final_report"
+  }
+ ],
+ "queries": [
+  {
+   "query_id": "q_aed351",
+   "sql": "WITH m AS (\n  SELECT category AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'sports_leisure' ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT category AS segment, SUM(price) FILTER(WHERE order_month = '2018-04') AS prev, SUM(price) FILTER(WHERE order_month = '2018-05') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') GROUP BY 1) SELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'sports_leisure' ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "segment": "sports_leisure",
+     "prev": 65793.52000000018,
+     "curr": 14901.59999999999,
+     "change": -50891.92000000019
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.068,
+   "hypothesis_id": "H1"
+  },
+  {
+   "query_id": "q_b958ae",
+   "sql": "WITH o AS (\n  SELECT DISTINCT order_id, order_month, customer_state AS segment, is_late\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05'))\nSELECT segment,\n       AVG(is_late) FILTER (WHERE order_month = '2018-04') AS rate_prev,\n       AVG(is_late) FILTER (WHERE order_month = '2018-05') AS rate_curr,\n       COUNT(*) FILTER (WHERE order_month = '2018-05') AS orders_curr\nFROM o\nWHERE segment = 'PR'\nGROUP BY 1\nORDER BY orders_curr DESC LIMIT 10;",
+   "executed_sql": "WITH o AS (SELECT DISTINCT order_id, order_month, customer_state AS segment, is_late FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')) SELECT segment, AVG(is_late) FILTER(WHERE order_month = '2018-04') AS rate_prev, AVG(is_late) FILTER(WHERE order_month = '2018-05') AS rate_curr, COUNT(*) FILTER(WHERE order_month = '2018-05') AS orders_curr FROM o WHERE segment = 'PR' GROUP BY 1 ORDER BY orders_curr DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "rate_prev",
+    "rate_curr",
+    "orders_curr"
+   ],
+   "rows": [
+    {
+     "segment": "PR",
+     "rate_prev": 0.013123359580052493,
+     "rate_curr": 0.8062283737024222,
+     "orders_curr": 289
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.057,
+   "hypothesis_id": "H2"
+  },
+  {
+   "query_id": "q_822e1d",
+   "sql": "WITH m AS (\n  SELECT order_month, SUM(price) AS revenue\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT order_month, revenue, COUNT(DISTINCT order_id) AS orders, revenue / COUNT(DISTINCT order_id) AS aov\nFROM m\nWHERE order_month IN ('2018-04', '2018-05')\nGROUP BY 1\nORDER BY order_month ASC;",
+   "executed_sql": "WITH m AS (SELECT order_month, SUM(price) AS revenue FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') GROUP BY 1) SELECT order_month, revenue, COUNT(DISTINCT order_id) AS orders, revenue / COUNT(DISTINCT order_id) AS aov FROM m WHERE order_month IN ('2018-04', '2018-05') GROUP BY 1 ORDER BY order_month ASC LIMIT 200",
+   "columns": [],
+   "rows": [],
+   "row_count": 0,
+   "error": "sql error: Binder Error: Referenced column \"order_id\" not found in FROM clause!",
+   "elapsed_s": 0.022,
+   "hypothesis_id": "H3"
+  },
+  {
+   "query_id": "q_29e610",
+   "sql": "WITH o AS (\n  SELECT DISTINCT order_id, order_month, payment_type AS segment, is_late\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05'))\nSELECT segment,\n       AVG(is_late) FILTER (WHERE order_month = '2018-04') AS rate_prev,\n       AVG(is_late) FILTER (WHERE order_month = '2018-05') AS rate_curr,\n       COUNT(*) FILTER (WHERE order_month = '2018-05') AS orders_curr\nFROM o\nWHERE segment = 'credit_card'\nGROUP BY 1\nORDER BY orders_curr DESC LIMIT 10;",
+   "executed_sql": "WITH o AS (SELECT DISTINCT order_id, order_month, payment_type AS segment, is_late FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')) SELECT segment, AVG(is_late) FILTER(WHERE order_month = '2018-04') AS rate_prev, AVG(is_late) FILTER(WHERE order_month = '2018-05') AS rate_curr, COUNT(*) FILTER(WHERE order_month = '2018-05') AS orders_curr FROM o WHERE segment = 'credit_card' GROUP BY 1 ORDER BY orders_curr DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "rate_prev",
+    "rate_curr",
+    "orders_curr"
+   ],
+   "rows": [
+    {
+     "segment": "credit_card",
+     "rate_prev": 0.04239877769289534,
+     "rate_curr": 0.09737678855325914,
+     "orders_curr": 5032
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.067,
+   "hypothesis_id": "H4"
+  },
+  {
+   "query_id": "q_fa1c75",
+   "sql": "WITH m AS (\n  SELECT order_month, SUM(price) AS revenue, COUNT(DISTINCT order_id) AS orders, SUM(price) / COUNT(DISTINCT order_id) AS aov\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT order_month, revenue, orders, aov\nFROM m\nORDER BY order_month ASC;",
+   "executed_sql": "WITH m AS (SELECT order_month, SUM(price) AS revenue, COUNT(DISTINCT order_id) AS orders, SUM(price) / COUNT(DISTINCT order_id) AS aov FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') GROUP BY 1) SELECT order_month, revenue, orders, aov FROM m ORDER BY order_month ASC LIMIT 200",
+   "columns": [
+    "order_month",
+    "revenue",
+    "orders",
+    "aov"
+   ],
+   "rows": [
+    {
+     "order_month": "2018-04",
+     "revenue": 973534.0900000272,
+     "orders": 6798,
+     "aov": 143.2088982053585
+    },
+    {
+     "order_month": "2018-05",
+     "revenue": 932504.9800000229,
+     "orders": 6412,
+     "aov": 145.43121958827555
+    }
+   ],
+   "row_count": 2,
+   "error": null,
+   "elapsed_s": 0.056,
+   "hypothesis_id": "H5"
+  }
+ ],
+ "revised": false,
+ "verification_before_revision": null,
+ "forced_final": false,
+ "report": {
+  "summary": "The decline in revenue and increase in late deliveries are primarily driven by a significant drop in sales from the 'sports_leisure' category and a surge in late deliveries from the 'PR' state. These effects are substantial and explain a large portion of the overall changes.",
+  "findings": [
+   {
+    "claim": "The decline in revenue is primarily driven by a significant drop in sales from the 'sports_leisure' category.",
+    "kpi": "revenue",
+    "dimension": "category",
+    "segment": "sports_leisure",
+    "numbers": [
+     {
+      "value": -50891.92,
+      "meaning": "contribution to revenue change"
+     },
+     {
+      "value": 1.1728,
+      "meaning": "excess_share"
+     }
+    ],
+    "evidence_query_ids": [
+     "decomp_revenue_category",
+     "q_aed351"
+    ],
+    "confidence": "high"
+   },
+   {
+    "claim": "The increase in late deliveries is mainly due to a surge in late deliveries from the 'PR' state.",
+    "kpi": "late_rate",
+    "dimension": "customer_state",
+    "segment": "PR",
+    "numbers": [
+     {
+      "value": 0.7931,
+      "meaning": "change in late delivery rate"
+     },
+     {
+      "value": 0.6687,
+      "meaning": "excess_share"
+     }
+    ],
+    "evidence_query_ids": [
+     "decomp_late_rate_customer_state",
+     "q_b958ae"
+    ],
+    "confidence": "high"
+   }
+  ],
+  "investigate_next": [
+   {
+    "item": "Analyze the specific products or items within the 'sports_leisure' category that contributed most to the decline in revenue.",
+    "why": "Identify if there are specific products that need attention or if the category as a whole needs to be re-evaluated.",
+    "data_needed": "Detailed breakdown of items within the 'sports_leisure' category."
+   },
+   {
+    "item": "Investigate the reasons behind the surge in late deliveries from the 'PR' state.",
+    "why": "Determine if there are specific issues related to delivery logistics or customer behavior in the 'PR' state.",
+    "data_needed": "Detailed delivery logs and customer feedback from the 'PR' state."
+   },
+   {
+    "item": "Examine the overall market trends and economic conditions in Brazil during the period.",
+    "why": "Identify if there are broader economic factors affecting the entire marketplace.",
+    "data_needed": "Economic indicators and market trends data for the period."
+   },
+   {
+    "item": "Review the payment methods and delivery strategies for the 'credit_card' segment.",
+    "why": "Determine if there are specific issues with credit card payments or delivery methods that could be optimized.",
+    "data_needed": "Detailed payment and delivery data for the 'credit_card' segment."
+   }
+  ]
+ },
+ "verification": {
+  "findings": [
+   {
+    "index": 0,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": -50891.92,
+      "text": "-50891.92",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_category"
+     },
+     {
+      "value": 1.1728,
+      "text": "1.1728",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_category"
+     }
+    ],
+    "valid_ids": [
+     "decomp_revenue_category",
+     "q_aed351"
+    ],
+    "invalid_ids": []
+   },
+   {
+    "index": 1,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": 0.7931,
+      "text": "0.7931",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_late_rate_customer_state"
+     },
+     {
+      "value": 0.6687,
+      "text": "0.6687",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_late_rate_customer_state"
+     }
+    ],
+    "valid_ids": [
+     "decomp_late_rate_customer_state",
+     "q_b958ae"
+    ],
+    "invalid_ids": []
+   }
+  ],
+  "summary_numbers": [],
+  "total_numbers": 4,
+  "unsupported_numbers": 0,
+  "unsupported_rate": 0.0
+ },
+ "n_steps": 12,
+ "llm_calls": 12,
+ "llm_retries": 0,
+ "llm_seconds": 196.1,
+ "prompt_tokens": 94824,
+ "output_tokens": 2399,
+ "elapsed_s": 196.62
+}

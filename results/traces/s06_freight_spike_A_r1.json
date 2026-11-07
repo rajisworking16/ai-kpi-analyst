@@ -1,0 +1,282 @@
+{
+ "run_id": "s06_freight_spike_A_r1",
+ "mode": "baseline",
+ "db_path": "/Users/rajkandula/projects/ai-kpi-analyst/data/eval/s06_freight_spike.duckdb",
+ "month": "2018-05",
+ "question": "Why did the freight ratio rise?",
+ "model": "qwen2.5:7b",
+ "prompt_version": "v4",
+ "focus_kpis": [
+  "freight_ratio"
+ ],
+ "detection": [
+  {
+   "kpi": "revenue",
+   "current": 977544.6899999991,
+   "previous": 973534.0899999985,
+   "pct_change": 0.004119629750202873,
+   "z_score": 0.7721389163712433,
+   "trailing_mean": 898628.504999999,
+   "trailing_std": 102204.64650438286,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "orders",
+   "current": 6749.0,
+   "previous": 6798.0,
+   "pct_change": -0.007208002353633422,
+   "z_score": 0.07010930472255374,
+   "trailing_mean": 6704.5,
+   "trailing_std": 634.7231680031855,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "aov",
+   "current": 144.8428937620387,
+   "previous": 143.2088982053543,
+   "pct_change": 0.011409874506131106,
+   "z_score": 1.87623116957595,
+   "trailing_mean": 133.9056252415095,
+   "trailing_std": 5.829382166698114,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "freight_ratio",
+   "current": 0.184268358104426,
+   "previous": 0.16367669261586928,
+   "pct_change": 0.1258069500272896,
+   "z_score": 3.473212782651479,
+   "trailing_mean": 0.16712845466721393,
+   "trailing_std": 0.0049348843591803535,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_delivery_days",
+   "current": 11.41902893535668,
+   "previous": 11.499241053673193,
+   "pct_change": -0.006975427155767931,
+   "z_score": -1.798630524499547,
+   "trailing_mean": 14.897066939923869,
+   "trailing_std": 1.9337145440333956,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "late_rate",
+   "current": 0.06563935397836716,
+   "previous": 0.04501323918799647,
+   "pct_change": 0.4582232952449019,
+   "z_score": -0.7076241981127892,
+   "trailing_mean": 0.10525208645936807,
+   "trailing_std": 0.05597990089463698,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_review_score",
+   "current": 4.194034215528586,
+   "previous": 4.162501816068575,
+   "pct_change": 0.007575347916554928,
+   "z_score": 1.6034778605017115,
+   "trailing_mean": 3.9524831868289247,
+   "trailing_std": 0.1506419481364606,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "cancellation_rate",
+   "current": 0.003491924923614142,
+   "previous": 0.00216169476869866,
+   "pct_change": 0.6153644696639021,
+   "z_score": -0.36745506143154244,
+   "trailing_mean": 0.004689740350527282,
+   "trailing_std": 0.0032597603153067334,
+   "direction": "up",
+   "significant": true
+  }
+ ],
+ "revenue_split": {
+  "revenue_prev": 973534.0899999965,
+  "revenue_curr": 977544.6899999963,
+  "volume_effect": -7017.236012062345,
+  "aov_effect": 11107.901794339758,
+  "interaction": -80.06578227752988,
+  "total_change": 4010.5999999998603
+ },
+ "hypotheses": [],
+ "steps": [],
+ "queries": [],
+ "revised": false,
+ "verification_before_revision": null,
+ "report": {
+  "summary": "The freight ratio increased in 2018-05 compared to 2018-04, primarily due to a significant rise in freight costs relative to revenue, with a smaller but still notable effect from a decrease in the number of orders.",
+  "findings": [
+   {
+    "claim": "The freight ratio increased by 13.5% from 2018-04 to 2018-05, with a 21.4% increase in freight costs relative to revenue.",
+    "kpi": "freight_ratio",
+    "dimension": "freight_value",
+    "segment": "all",
+    "numbers": [
+     {
+      "value": 0.1637,
+      "meaning": "freight_ratio in 2018-04"
+     },
+     {
+      "value": 0.1843,
+      "meaning": "freight_ratio in 2018-05"
+     },
+     {
+      "value": 0.0206,
+      "meaning": "increase in freight_ratio"
+     }
+    ],
+    "evidence_query_ids": [
+     "decomp_revenue_category",
+     "q_1a2b3c"
+    ],
+    "confidence": "high"
+   },
+   {
+    "claim": "The number of orders decreased by 4.4% from 2018-04 to 2018-05, which contributed to the increase in freight ratio.",
+    "kpi": "orders",
+    "dimension": "overall",
+    "segment": "all",
+    "numbers": [
+     {
+      "value": 6798.0,
+      "meaning": "orders in 2018-04"
+     },
+     {
+      "value": 6749.0,
+      "meaning": "orders in 2018-05"
+     },
+     {
+      "value": 0.044,
+      "meaning": "decrease in orders"
+     }
+    ],
+    "evidence_query_ids": [
+     "decomp_revenue_category",
+     "q_1a2b3c"
+    ],
+    "confidence": "medium"
+   }
+  ],
+  "investigate_next": [
+   {
+    "item": "Analyze the distribution of freight costs across different categories to identify if certain categories experienced a significant increase in freight costs.",
+    "why": "This could provide insights into whether the increase in freight ratio is driven by specific product categories.",
+    "data_needed": "decomp_revenue_category"
+   },
+   {
+    "item": "Review the shipping policies and costs for the month of May 2018 to understand any changes in shipping rates or policies that might have affected the freight ratio.",
+    "why": "Changes in shipping policies can significantly impact the freight ratio, and understanding these changes can help in identifying the root cause.",
+    "data_needed": "shipping_policy_changes"
+   }
+  ]
+ },
+ "verification": {
+  "findings": [
+   {
+    "index": 0,
+    "label": "partially_verified",
+    "numbers": [
+     {
+      "value": 0.1637,
+      "text": "0.1637",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 0.1843,
+      "text": "0.1843",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 0.0206,
+      "text": "0.0206",
+      "source": "numbers",
+      "supported": false,
+      "matched_in": null
+     },
+     {
+      "value": 13.5,
+      "text": "13.5%",
+      "source": "claim",
+      "supported": false,
+      "matched_in": null
+     },
+     {
+      "value": 21.4,
+      "text": "21.4%",
+      "source": "claim",
+      "supported": false,
+      "matched_in": null
+     }
+    ],
+    "valid_ids": [],
+    "invalid_ids": [
+     "decomp_revenue_category",
+     "q_1a2b3c"
+    ]
+   },
+   {
+    "index": 1,
+    "label": "partially_verified",
+    "numbers": [
+     {
+      "value": 6798.0,
+      "text": "6798.0",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 6749.0,
+      "text": "6749.0",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 0.044,
+      "text": "0.044",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 4.4,
+      "text": "4.4%",
+      "source": "claim",
+      "supported": true,
+      "matched_in": "kpi_table"
+     }
+    ],
+    "valid_ids": [],
+    "invalid_ids": [
+     "decomp_revenue_category",
+     "q_1a2b3c"
+    ]
+   }
+  ],
+  "summary_numbers": [],
+  "total_numbers": 9,
+  "unsupported_numbers": 3,
+  "unsupported_rate": 0.3333333333333333
+ },
+ "n_steps": 1,
+ "llm_calls": 1,
+ "llm_retries": 0,
+ "llm_seconds": 47.97,
+ "prompt_tokens": 2169,
+ "output_tokens": 650,
+ "elapsed_s": 48.21
+}
