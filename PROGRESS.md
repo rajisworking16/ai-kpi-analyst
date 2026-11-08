@@ -6,28 +6,14 @@ Everything else is committed locally on `main`.
 
 # Progress
 
-Resume from here. Build order is Section 10 of PROJECT_SPEC.md. Venv: `.venv/bin/python`.
+## Status: Done (except the push blocker above)
 
-## Done
-- Step 1: environment (uv, Python 3.12 venv, Ollama 0.40.15 + qwen2.5:7b, repo-local git identity with noreply email), scaffold
-- Step 2: data download (anonymous kagglehub), DuckDB load, KPI definitions + tests
-- Step 3: detect.py, decompose.py + tests
-- Step 4: sql_guard.py + tests
-- Step 5: llm.py, schemas.py, prompts.py, context.py, agent.py, baseline.py, pipeline.py, cli.py; example run saved (results/reports/example_2018-03_revenue.md)
-- Step 6: verify.py + tests, revision mode, report.py
-- Step 7: eval/inject.py, scenarios.yaml (generated), score.py, run_eval.py + tests; eval DBs built in data/eval/
-- Step 8: Streamlit app, screenshots (scripts/screenshots.py)
-
-## In progress
-- Full eval started 02:10 on 2026-11-08 (caffeinate -dims, log results/eval.log). Expected finish about 04:00. If interrupted, rerun: `nohup caffeinate -dims .venv/bin/python -m eval.run_eval --configs A B C --scenarios all --runs 1 >> results/eval.log 2>&1 &` (resumes from CSV).
-- Step 9: README drafted with [TBD], docs/architecture.md, scripts/check_repo.py, scripts/check_readme.py written
-
-## Next
-- Step 10: quality gates, `gh repo create rajisworking16/ai-kpi-analyst --public --source=. --push`
-- Step 11: full eval in background with caffeinate (resumable: rerun same command)
-- Step 12: fill README results/limitations from results/eval_summary.json, check_readme, push
-- Step 13: private files in ~/projects/ai-kpi-analyst-private/
+All 13 steps in PROJECT_SPEC.md section 10 are done locally:
+- Steps 1 to 9: built, tested and committed (see git log).
+- Step 10: quality gates pass (pytest 67 passed, ruff clean, check_repo OK, CLI end-to-end run on 2018-03, Streamlit boots). The push is blocked (see top).
+- Step 11 and 12: the full eval ran 2026-11-08 02:10 to 03:32 (36 runs). Results are in results/ and the README; check_readme OK. Commit `results: eval run v1`.
+- Step 13: private files written to ~/projects/ai-kpi-analyst-private/ (RESUME_POINTS.md, INTERVIEW_PREP.md, SUMMARY.md).
 
 ## Notes
-- Rebuild DB: `.venv/bin/python -m src.data_load`; eval DBs: `.venv/bin/python -m eval.inject --all`
-- Mac sleep pauses runs; always wrap long runs in `caffeinate -i`.
+- Venv: `.venv/bin/python`. Rebuild DB: `.venv/bin/python -m src.data_load`; eval DBs: `.venv/bin/python -m eval.inject --all`.
+- Mac sleep pauses runs and throttles the GPU: wrap long runs in `caffeinate -dims`.
