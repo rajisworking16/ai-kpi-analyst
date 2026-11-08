@@ -1,0 +1,97 @@
+{
+ "n_scenarios": 12,
+ "model": "qwen2.5:7b",
+ "prompt_version": "v4",
+ "git_commit": "573d664",
+ "hardware": "Apple M5, 24 GB RAM, macOS 26.7.2",
+ "generated": "2026-11-08T02:09:05",
+ "configs": {
+  "A": {
+   "name": "Baseline (LLM only)",
+   "n_runs": 2,
+   "runs_per_scenario": 1,
+   "hit1": 0.0,
+   "hit3": 0.0,
+   "hit1_rate": 0.0,
+   "hit3_rate": 0.0,
+   "unsupported_rate": 0.1,
+   "unsupported_numbers": 1,
+   "total_numbers": 10,
+   "unsupported_rate_before_revision": 0.1,
+   "mean_steps": 1.0,
+   "mean_time_s": 50.5,
+   "errors": 0,
+   "revised_runs": 0
+  },
+  "B": {
+   "name": "Agent",
+   "n_runs": 1,
+   "runs_per_scenario": 1,
+   "hit1": 1.0,
+   "hit3": 1.0,
+   "hit1_rate": 1.0,
+   "hit3_rate": 1.0,
+   "unsupported_rate": 0.0,
+   "unsupported_numbers": 0,
+   "total_numbers": 6,
+   "unsupported_rate_before_revision": 0.0,
+   "mean_steps": 11.0,
+   "mean_time_s": 321.3,
+   "errors": 0,
+   "revised_runs": 0
+  },
+  "C": {
+   "name": "Agent + verifier revision",
+   "n_runs": 1,
+   "runs_per_scenario": 1,
+   "hit1": 0.0,
+   "hit3": 0.0,
+   "hit1_rate": 0.0,
+   "hit3_rate": 0.0,
+   "unsupported_rate": null,
+   "unsupported_numbers": 0,
+   "total_numbers": 0,
+   "unsupported_rate_before_revision": null,
+   "mean_steps": 0.0,
+   "mean_time_s": 95.9,
+   "errors": 1,
+   "revised_runs": 0
+  }
+ },
+ "per_scenario": {
+  "s01_category_demand_drop": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   },
+   "B": {
+    "hit1": 1.0,
+    "hit3": 1.0,
+    "top": "category=health_beauty"
+   },
+   "C": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "="
+   }
+  },
+  "s02_category_price_hike": {
+   "A": {
+    "hit1": 0.0,
+    "hit3": 0.0,
+    "top": "overall=all"
+   }
+  },
+  "s03_top_seller_dropout": {},
+  "s04_regional_delivery_delay": {},
+  "s05_delay_hurts_reviews": {},
+  "s06_freight_spike": {},
+  "s07_regional_demand_surge": {},
+  "s08_payment_mix_shift": {},
+  "s09_cancellation_spike": {},
+  "s10_big_ticket_category_drop": {},
+  "s11_two_causes": {},
+  "s12_decoy_broad_drop": {}
+ }
+}

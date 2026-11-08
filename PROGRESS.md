@@ -1,3 +1,9 @@
+**BLOCKER (needs Pranav):** creating the public GitHub repo was blocked by Claude Code's permission settings (public publish needs your OK). Run this once from the repo folder:
+
+    cd ~/projects/ai-kpi-analyst && gh repo create rajisworking16/ai-kpi-analyst --public --source=. --push
+
+Everything else is committed locally on `main`.
+
 # Progress
 
 Resume from here. Build order is Section 10 of PROJECT_SPEC.md. Venv: `.venv/bin/python`.

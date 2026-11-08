@@ -1,0 +1,4 @@
+run_id,scenario,config,run,hit1,hit3,unsupported_numbers,total_numbers,unsupported_rate,unsupported_before_revision,total_before_revision,revised,n_steps,llm_calls,elapsed_s,top_dimension,top_segment,n_findings,target_flagged,error,model,prompt_version,timestamp
+s01_category_demand_drop_A_r1,s01_category_demand_drop,A,1,0,0,0,6,0.0,0,6,False,1,1,72.87,overall,all,2,"{""revenue"": false}",,qwen2.5:7b,v4,2026-11-08T01:48:02
+s01_category_demand_drop_B_r1,s01_category_demand_drop,B,1,1.0,1.0,0,6,0.0,0,6,False,11,11,321.32,category,health_beauty,3,"{""revenue"": false}",,qwen2.5:7b,v4,2026-11-08T01:49:15
+s02_category_price_hike_A_r1,s02_category_price_hike,A,1,0,0,1,4,0.25,1,4,False,1,1,28.08,overall,all,1,"{""aov"": true}",,qwen2.5:7b,v4,2026-11-08T01:56:13

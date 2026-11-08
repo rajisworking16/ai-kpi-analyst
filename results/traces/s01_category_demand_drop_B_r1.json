@@ -1,0 +1,624 @@
+{
+ "run_id": "s01_category_demand_drop_B_r1",
+ "mode": "agent",
+ "db_path": "/Users/rajkandula/projects/ai-kpi-analyst/data/eval/s01_category_demand_drop.duckdb",
+ "month": "2018-05",
+ "question": "Why did revenue drop?",
+ "model": "qwen2.5:7b",
+ "prompt_version": "v4",
+ "focus_kpis": [
+  "revenue"
+ ],
+ "detection": [
+  {
+   "kpi": "revenue",
+   "current": 903267.2299999988,
+   "previous": 973534.0899999973,
+   "pct_change": -0.0721770924323756,
+   "z_score": 0.04538663513504615,
+   "trailing_mean": 898628.504999998,
+   "trailing_std": 102204.64650438279,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "orders",
+   "current": 6248.0,
+   "previous": 6798.0,
+   "pct_change": -0.08090614886731391,
+   "z_score": -0.7192111821538377,
+   "trailing_mean": 6704.5,
+   "trailing_std": 634.7231680031855,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "aov",
+   "current": 144.56901888604335,
+   "previous": 143.20889820535413,
+   "pct_change": 0.009497459290126499,
+   "z_score": 1.829249368046482,
+   "trailing_mean": 133.9056252415094,
+   "trailing_std": 5.829382166698112,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "freight_ratio",
+   "current": 0.15576406995303044,
+   "previous": 0.16367669261586953,
+   "pct_change": -0.0483430019044258,
+   "z_score": -2.302867481188799,
+   "trailing_mean": 0.16712845466721404,
+   "trailing_std": 0.00493488435918033,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "avg_delivery_days",
+   "current": 11.410871634478587,
+   "previous": 11.499241053673192,
+   "pct_change": -0.007684804482499021,
+   "z_score": -1.802848986269544,
+   "trailing_mean": 14.897066939923867,
+   "trailing_std": 1.9337145440333952,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "late_rate",
+   "current": 0.06306017925736236,
+   "previous": 0.04501323918799647,
+   "pct_change": 0.4009251587959129,
+   "z_score": -0.7536974258210557,
+   "trailing_mean": 0.10525208645936807,
+   "trailing_std": 0.05597990089463698,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_review_score",
+   "current": 4.189505294768453,
+   "previous": 4.162501816068575,
+   "pct_change": 0.006487319379810393,
+   "z_score": 1.5734137195624893,
+   "trailing_mean": 3.9524831868289247,
+   "trailing_std": 0.1506419481364606,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "cancellation_rate",
+   "current": 0.003302406038685328,
+   "previous": 0.00216169476869866,
+   "pct_change": 0.5276930334958326,
+   "z_score": -0.42559396325168475,
+   "trailing_mean": 0.004689740350527282,
+   "trailing_std": 0.0032597603153067334,
+   "direction": "up",
+   "significant": true
+  }
+ ],
+ "revenue_split": {
+  "revenue_prev": 973534.0899999947,
+  "revenue_curr": 903267.2299999943,
+  "volume_effect": -78764.89401294455,
+  "aov_effect": 9246.100387323004,
+  "interaction": -748.0663743788839,
+  "total_change": -70266.86000000045
+ },
+ "hypotheses": [
+  {
+   "id": "H1",
+   "statement": "The decline in revenue is primarily driven by a significant drop in sales of the 'health_beauty' category.",
+   "dimension": "category",
+   "segment": "health_beauty",
+   "test": "The revenue contribution from the 'health_beauty' category has decreased by -69497.75, which is the largest negative contributor to the overall revenue change.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_0bc12b"
+   ]
+  },
+  {
+   "id": "H2",
+   "statement": "The decrease in revenue is due to a shift in customer behavior, specifically a decline in sales from the 'PR' state.",
+   "dimension": "customer_state",
+   "segment": "PR",
+   "test": "The revenue contribution from the 'PR' state has decreased by -23058.93, which is the second-largest negative contributor to the overall revenue change.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_a2f58e"
+   ]
+  },
+  {
+   "id": "H3",
+   "statement": "The revenue decline is partially due to a shift in payment methods, with a significant drop in sales through 'boleto' payments.",
+   "dimension": "payment_type",
+   "segment": "boleto",
+   "test": "The revenue contribution from 'boleto' payments has decreased by -7964.06, which is the largest negative contributor to the overall revenue change in payment types.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_6ca933"
+   ]
+  },
+  {
+   "id": "H4",
+   "statement": "There is an overall decline in the number of orders, which is contributing to the revenue drop.",
+   "dimension": "orders",
+   "segment": "overall",
+   "test": "The number of orders has decreased by 550, which is a significant drop and could be a contributing factor to the revenue decline.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_64e175"
+   ]
+  },
+  {
+   "id": "H5",
+   "statement": "The decline in revenue is due to a combination of factors, including a drop in sales of the 'health_beauty' category and a shift in customer behavior in the 'PR' state.",
+   "dimension": "multiple_dimensions",
+   "segment": "combined",
+   "test": "Both the 'health_beauty' category and the 'PR' state are significant contributors to the revenue decline, suggesting a combined effect.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_0bc12b",
+    "q_a2f58e",
+    "q_6ca933",
+    "q_64e175"
+   ]
+  }
+ ],
+ "steps": [
+  {
+   "step": 1,
+   "action": "propose_hypotheses",
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "The decline in revenue is primarily driven by a significant drop in sales of the 'health_beauty' category.",
+     "dimension": "category",
+     "segment": "health_beauty",
+     "test": "The revenue contribution from the 'health_beauty' category has decreased by -69497.75, which is the largest negative contributor to the overall revenue change.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_0bc12b"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "The decrease in revenue is due to a shift in customer behavior, specifically a decline in sales from the 'PR' state.",
+     "dimension": "customer_state",
+     "segment": "PR",
+     "test": "The revenue contribution from the 'PR' state has decreased by -23058.93, which is the second-largest negative contributor to the overall revenue change.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_a2f58e"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "The revenue decline is partially due to a shift in payment methods, with a significant drop in sales through 'boleto' payments.",
+     "dimension": "payment_type",
+     "segment": "boleto",
+     "test": "The revenue contribution from 'boleto' payments has decreased by -7964.06, which is the largest negative contributor to the overall revenue change in payment types.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_6ca933"
+     ]
+    },
+    {
+     "id": "H4",
+     "statement": "There is an overall decline in the number of orders, which is contributing to the revenue drop.",
+     "dimension": "orders",
+     "segment": "overall",
+     "test": "The number of orders has decreased by 550, which is a significant drop and could be a contributing factor to the revenue decline.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_64e175"
+     ]
+    },
+    {
+     "id": "H5",
+     "statement": "The decline in revenue is due to a combination of factors, including a drop in sales of the 'health_beauty' category and a shift in customer behavior in the 'PR' state.",
+     "dimension": "multiple_dimensions",
+     "segment": "combined",
+     "test": "Both the 'health_beauty' category and the 'PR' state are significant contributors to the revenue decline, suggesting a combined effect.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_0bc12b",
+      "q_a2f58e",
+      "q_6ca933",
+      "q_64e175"
+     ]
+    }
+   ]
+  },
+  {
+   "step": 2,
+   "action": "run_sql",
+   "hypothesis_id": "H1",
+   "reason": "Test the hypothesis that the decline in revenue is primarily driven by a significant drop in sales of the 'health_beauty' category.",
+   "sql": "WITH m AS (\n  SELECT category AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'health_beauty' ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_0bc12b",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 3,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H1",
+   "reason": "The significant drop in revenue is primarily driven by a substantial decrease in sales of the 'health_beauty' category.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_0bc12b"
+   ]
+  },
+  {
+   "step": 4,
+   "action": "run_sql",
+   "hypothesis_id": "H2",
+   "reason": "Test the hypothesis that the decrease in revenue is due to a shift in customer behavior, specifically a decline in sales from the 'PR' state.",
+   "sql": "WITH m AS (\n  SELECT customer_state AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'PR' ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_a2f58e",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 5,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H2",
+   "reason": "The significant drop in revenue is due to a decline in sales from the 'PR' state.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_a2f58e"
+   ]
+  },
+  {
+   "step": 6,
+   "action": "run_sql",
+   "hypothesis_id": "H3",
+   "reason": "Test the hypothesis that the revenue decline is partially due to a shift in payment methods, with a significant drop in sales through 'boleto' payments.",
+   "sql": "WITH m AS (\n  SELECT payment_type AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'boleto' ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_6ca933",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 7,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H3",
+   "reason": "The significant drop in revenue is partially due to a shift in payment methods, with a significant drop in sales through 'boleto' payments.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_6ca933"
+   ]
+  },
+  {
+   "step": 8,
+   "action": "run_sql",
+   "hypothesis_id": "H4",
+   "reason": "Test the hypothesis that there is an overall decline in the number of orders, which is contributing to the revenue drop.",
+   "sql": "WITH m AS (\n  SELECT COUNT(DISTINCT order_id) FILTER (WHERE order_month = '2018-04') AS prev_orders,\n         COUNT(DISTINCT order_id) FILTER (WHERE order_month = '2018-05') AS curr_orders\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05'))\nSELECT prev_orders, curr_orders, curr_orders - prev_orders AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_64e175",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 9,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H4",
+   "reason": "The overall decline in the number of orders is contributing to the revenue drop.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_64e175"
+   ]
+  },
+  {
+   "step": 10,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H5",
+   "reason": "The decline in revenue is due to a combination of factors, including a drop in sales of the 'health_beauty' category and a shift in customer behavior in the 'PR' state.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_0bc12b",
+    "q_a2f58e",
+    "q_6ca933",
+    "q_64e175"
+   ]
+  },
+  {
+   "step": 11,
+   "action": "final_report"
+  }
+ ],
+ "queries": [
+  {
+   "query_id": "q_0bc12b",
+   "sql": "WITH m AS (\n  SELECT category AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'health_beauty' ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT category AS segment, SUM(price) FILTER(WHERE order_month = '2018-04') AS prev, SUM(price) FILTER(WHERE order_month = '2018-05') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') GROUP BY 1) SELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'health_beauty' ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "segment": "health_beauty",
+     "prev": 91058.45000000001,
+     "curr": 21560.699999999997,
+     "change": -69497.75000000001
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.174,
+   "hypothesis_id": "H1"
+  },
+  {
+   "query_id": "q_a2f58e",
+   "sql": "WITH m AS (\n  SELECT customer_state AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'PR' ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT customer_state AS segment, SUM(price) FILTER(WHERE order_month = '2018-04') AS prev, SUM(price) FILTER(WHERE order_month = '2018-05') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') GROUP BY 1) SELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'PR' ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "segment": "PR",
+     "prev": 65914.88000000009,
+     "curr": 42855.95000000007,
+     "change": -23058.930000000022
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.111,
+   "hypothesis_id": "H2"
+  },
+  {
+   "query_id": "q_6ca933",
+   "sql": "WITH m AS (\n  SELECT payment_type AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-04') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-05') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'boleto' ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT payment_type AS segment, SUM(price) FILTER(WHERE order_month = '2018-04') AS prev, SUM(price) FILTER(WHERE order_month = '2018-05') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05') GROUP BY 1) SELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'boleto' ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "segment": "boleto",
+     "prev": 160595.74999999852,
+     "curr": 152631.68999999855,
+     "change": -7964.059999999969
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.132,
+   "hypothesis_id": "H3"
+  },
+  {
+   "query_id": "q_64e175",
+   "sql": "WITH m AS (\n  SELECT COUNT(DISTINCT order_id) FILTER (WHERE order_month = '2018-04') AS prev_orders,\n         COUNT(DISTINCT order_id) FILTER (WHERE order_month = '2018-05') AS curr_orders\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05'))\nSELECT prev_orders, curr_orders, curr_orders - prev_orders AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT COUNT(DISTINCT order_id) FILTER(WHERE order_month = '2018-04') AS prev_orders, COUNT(DISTINCT order_id) FILTER(WHERE order_month = '2018-05') AS curr_orders FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-04', '2018-05')) SELECT prev_orders, curr_orders, curr_orders - prev_orders AS change FROM m ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "prev_orders",
+    "curr_orders",
+    "change"
+   ],
+   "rows": [
+    {
+     "prev_orders": 6798,
+     "curr_orders": 6248,
+     "change": -550
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.145,
+   "hypothesis_id": "H4"
+  }
+ ],
+ "revised": false,
+ "verification_before_revision": null,
+ "forced_final": false,
+ "report": {
+  "summary": "The decline in revenue is primarily driven by a significant drop in sales of the 'health_beauty' category, followed by a decline in sales from the 'PR' state, and an overall decrease in the number of orders. These factors collectively explain the majority of the revenue decline.",
+  "findings": [
+   {
+    "claim": "The 'health_beauty' category contributed the most to the revenue decline, with a significant drop in sales.",
+    "kpi": "revenue",
+    "dimension": "category",
+    "segment": "health_beauty",
+    "numbers": [
+     {
+      "value": -69497.75,
+      "meaning": "revenue contribution change"
+     },
+     {
+      "value": 0.8955,
+      "meaning": "excess share"
+     }
+    ],
+    "evidence_query_ids": [
+     "decomp_revenue_category",
+     "q_0bc12b",
+     "q_6ca933",
+     "q_64e175",
+     "decomp_revenue_category"
+    ],
+    "confidence": "high"
+   },
+   {
+    "claim": "Sales from the 'PR' state declined significantly, contributing to the revenue drop.",
+    "kpi": "revenue",
+    "dimension": "customer_state",
+    "segment": "PR",
+    "numbers": [
+     {
+      "value": -23058.93,
+      "meaning": "revenue contribution change"
+     },
+     {
+      "value": 0.2605,
+      "meaning": "excess share"
+     }
+    ],
+    "evidence_query_ids": [
+     "decomp_revenue_customer_state",
+     "q_a2f58e"
+    ],
+    "confidence": "high"
+   },
+   {
+    "claim": "There was an overall decline in the number of orders, which also contributed to the revenue drop.",
+    "kpi": "orders",
+    "dimension": "overall",
+    "segment": "all",
+    "numbers": [
+     {
+      "value": -550.0,
+      "meaning": "change in orders"
+     },
+     {
+      "value": -0.0809,
+      "meaning": "percentage change in orders"
+     }
+    ],
+    "evidence_query_ids": [
+     "q_64e175"
+    ],
+    "confidence": "high"
+   }
+  ],
+  "investigate_next": [
+   {
+    "item": "Investigate the specific products or items within the 'health_beauty' category that contributed most to the decline in sales.",
+    "why": "To identify specific products that may need targeted marketing or pricing adjustments.",
+    "data_needed": "Sales data by product within the 'health_beauty' category."
+   },
+   {
+    "item": "Analyze the reasons behind the decline in sales from the 'PR' state.",
+    "why": "To understand if there are specific issues in the 'PR' state that need addressing, such as local market trends or customer preferences.",
+    "data_needed": "Customer feedback, market trends, and local economic indicators for the 'PR' state."
+   },
+   {
+    "item": "Explore the reasons for the overall decline in orders.",
+    "why": "To determine if there are broader market or operational factors affecting order volume.",
+    "data_needed": "Market trends, customer satisfaction surveys, and operational metrics."
+   },
+   {
+    "item": "Review payment methods and customer behavior trends.",
+    "why": "To ensure that the shift in payment methods is not indicative of a broader issue with customer payment preferences or trust.",
+    "data_needed": "Payment method usage trends and customer feedback on payment experiences."
+   }
+  ]
+ },
+ "verification": {
+  "findings": [
+   {
+    "index": 0,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": -69497.75,
+      "text": "-69497.75",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_category"
+     },
+     {
+      "value": 0.8955,
+      "text": "0.8955",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_category"
+     }
+    ],
+    "valid_ids": [
+     "decomp_revenue_category",
+     "q_0bc12b",
+     "q_6ca933",
+     "q_64e175"
+    ],
+    "invalid_ids": []
+   },
+   {
+    "index": 1,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": -23058.93,
+      "text": "-23058.93",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_customer_state"
+     },
+     {
+      "value": 0.2605,
+      "text": "0.2605",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "decomp_revenue_customer_state"
+     }
+    ],
+    "valid_ids": [
+     "decomp_revenue_customer_state",
+     "q_a2f58e"
+    ],
+    "invalid_ids": []
+   },
+   {
+    "index": 2,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": -550.0,
+      "text": "-550.0",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "q_64e175"
+     },
+     {
+      "value": -0.0809,
+      "text": "-0.0809",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "detection"
+     }
+    ],
+    "valid_ids": [
+     "q_64e175"
+    ],
+    "invalid_ids": []
+   }
+  ],
+  "summary_numbers": [],
+  "total_numbers": 6,
+  "unsupported_numbers": 0,
+  "unsupported_rate": 0.0
+ },
+ "n_steps": 11,
+ "llm_calls": 11,
+ "llm_retries": 0,
+ "llm_seconds": 320.03,
+ "prompt_tokens": 65410,
+ "output_tokens": 2483,
+ "elapsed_s": 321.32
+}
