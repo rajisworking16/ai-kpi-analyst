@@ -24,7 +24,8 @@ KPI_MODEL = os.getenv("KPI_MODEL", "qwen2.5:7b")
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 LLM_TEMPERATURE = 0.0
 LLM_SEED = 42
-LLM_NUM_CTX = 16384
+LLM_NUM_CTX = 32768
+LLM_MAX_OUTPUT_TOKENS = 2000
 
 # Analysis window (confirmed from monthly order counts, see docs/DECISIONS.md)
 WINDOW_START = "2017-01"
