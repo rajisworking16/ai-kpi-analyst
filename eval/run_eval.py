@@ -129,7 +129,10 @@ def summarize(rows: list[dict], scenarios: list[dict]) -> dict:
         per_scenario[s["id"]] = {r["config"]: {"hit1": _f(r["hit1"]), "hit3": _f(r["hit3"]),
                                                "top": f"{r['top_dimension']}={r['top_segment']}"}
                                  for r in rows if r["scenario"] == s["id"]}
+    commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True,
+                            text=True).stdout.strip()
     return {"n_scenarios": n_scen, "model": KPI_MODEL, "prompt_version": PROMPT_VERSION,
+            "git_commit": commit,
             "hardware": hardware(), "generated": datetime.now().isoformat(timespec="seconds"),
             "configs": configs, "per_scenario": per_scenario}
 

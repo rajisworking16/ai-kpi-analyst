@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from src.kpis import definitions_markdown
 
-PROMPT_VERSION = "v3"
+PROMPT_VERSION = "v4"
 
 SCHEMA_TEXT = """\
 Main view `orders_enriched` (one row per order item; orders with no items have NULL item
@@ -60,13 +60,17 @@ FROM o GROUP BY 1 ORDER BY orders_curr DESC LIMIT 10"""
 
 REPORT_RULES = """\
 Report rules:
-- Order findings by how much of the KPI change they explain, largest first. The first
-  finding must be the main root cause.
+- Order findings by how much of the KPI change they explain beyond the segment's normal
+  size, largest first. The first finding must be the main root cause: usually the
+  segment with the largest excess_share across all dimensions, unless the query results
+  contradict it. A big segment with a big share_of_change but excess_share near 0 only
+  changed in proportion to its size; it is not a root cause.
 - Each finding names one dimension (category, customer_state, seller_id, payment_type, or
   overall) and one segment value copied exactly from the data (e.g. 'SP', 'health_beauty',
   a full seller_id). Use segment 'all' with dimension 'overall' for broad effects.
-- If the change is spread across many segments with no single driver, say the change is
-  broad-based in the summary and do not claim that one segment explains most of it.
+- If no segment has a large excess_share (all segments changed roughly in proportion to
+  their size), say the change is broad-based in the summary and do not claim that one
+  segment explains most of it.
 - Every number in `numbers`, `claim` and `summary` must be copied from a table or query
   result you were given. Do not compute new numbers. Fractions may be written as
   percentages (0.23 -> 23%).

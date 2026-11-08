@@ -26,6 +26,7 @@ LLM_TEMPERATURE = 0.0
 LLM_SEED = 42
 LLM_NUM_CTX = 32768
 LLM_MAX_OUTPUT_TOKENS = 2000
+LLM_TIMEOUT_S = 400
 
 # Analysis window (confirmed from monthly order counts, see docs/DECISIONS.md)
 WINDOW_START = "2017-01"

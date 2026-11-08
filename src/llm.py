@@ -6,6 +6,7 @@ import logging
 import time
 from dataclasses import dataclass, field
 
+import httpx
 import ollama
 from pydantic import BaseModel, ValidationError
 
@@ -15,6 +16,7 @@ from config import (
     LLM_NUM_CTX,
     LLM_SEED,
     LLM_TEMPERATURE,
+    LLM_TIMEOUT_S,
     OLLAMA_HOST,
 )
 
@@ -43,8 +45,22 @@ _client: ollama.Client | None = None
 def _get_client() -> ollama.Client:
     global _client
     if _client is None:
-        _client = ollama.Client(host=OLLAMA_HOST)
+        _client = ollama.Client(host=OLLAMA_HOST, timeout=LLM_TIMEOUT_S)
     return _client
+
+
+def _chat_with_retry(model: str, msgs: list[dict], schema: type[BaseModel], options: dict):
+    """One chat call; on a timeout or connection error, wait and try once more."""
+    for attempt in range(2):
+        try:
+            return _get_client().chat(model=model, messages=msgs, keep_alive="30m",
+                                      format=schema.model_json_schema(), options=options)
+        except (httpx.TimeoutException, httpx.TransportError) as e:
+            if attempt == 1:
+                raise LLMError(f"Ollama call failed twice: {type(e).__name__}") from e
+            log.warning("Ollama call failed (%s); retrying in 20s", type(e).__name__)
+            time.sleep(20)
+    raise AssertionError("unreachable")
 
 
 def chat_json(
@@ -65,8 +81,7 @@ def chat_json(
     last_err = ""
     for attempt in range(retries + 1):
         start = time.perf_counter()
-        resp = _get_client().chat(model=model, messages=msgs,
-                                  format=schema.model_json_schema(), options=options)
+        resp = _chat_with_retry(model, msgs, schema, options)
         elapsed = time.perf_counter() - start
         content = resp.message.content or ""
         log.info("llm %s: %.1fs, prompt %s tok, output %s tok", schema.__name__, elapsed,
