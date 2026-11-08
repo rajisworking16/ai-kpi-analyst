@@ -1,0 +1,550 @@
+{
+ "run_id": "example_2018-03_revenue",
+ "mode": "agent_verify",
+ "db_path": "/Users/rajkandula/projects/ai-kpi-analyst/data/processed/olist.duckdb",
+ "month": "2018-03",
+ "question": "Why did revenue change?",
+ "model": "qwen2.5:7b",
+ "prompt_version": "v3",
+ "focus_kpis": [
+  "revenue"
+ ],
+ "detection": [
+  {
+   "kpi": "revenue",
+   "current": 953356.249999998,
+   "previous": 826437.1299999991,
+   "pct_change": 0.1535738356770092,
+   "z_score": 1.09363623756838,
+   "trailing_mean": 786754.6683333326,
+   "trailing_std": 152337.2909049647,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "orders",
+   "current": 7003.0,
+   "previous": 6555.0,
+   "pct_change": 0.06834477498093058,
+   "z_score": 0.8680416822490831,
+   "trailing_mean": 5842.333333333333,
+   "trailing_std": 1337.1093697475412,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "aov",
+   "current": 136.13540625446208,
+   "previous": 126.07736536994646,
+   "pct_change": 0.07977673752146151,
+   "z_score": 0.03288680546344838,
+   "trailing_mean": 135.86892927470444,
+   "trailing_std": 8.10285389542665,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "freight_ratio",
+   "current": 0.17542444390541337,
+   "previous": 0.16907672093580814,
+   "pct_change": 0.037543447344328455,
+   "z_score": 2.2077609333184407,
+   "trailing_mean": 0.16276426680644007,
+   "trailing_std": 0.005734396740114447,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_delivery_days",
+   "current": 16.301410174409384,
+   "previous": 16.945137568155495,
+   "pct_change": -0.03798891517740462,
+   "z_score": 1.0203177195926703,
+   "trailing_mean": 14.214909439813354,
+   "trailing_std": 2.0449519738116466,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "late_rate",
+   "current": 0.18963301442239042,
+   "previous": 0.14126620900076278,
+   "pct_change": 0.3423805718561222,
+   "z_score": 2.571613127925838,
+   "trailing_mean": 0.08041356683177914,
+   "trailing_std": 0.04247118137816608,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_review_score",
+   "current": 3.7535674314493566,
+   "previous": 3.8273131494804153,
+   "pct_change": -0.019268273891063836,
+   "z_score": -1.9904001702428051,
+   "trailing_mean": 4.018534228102208,
+   "trailing_std": 0.13312237439194385,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "cancellation_rate",
+   "current": 0.0036056025516571903,
+   "previous": 0.010850178359096314,
+   "pct_change": -0.6676918634582251,
+   "z_score": -0.6260957545261003,
+   "trailing_mean": 0.00544215458546823,
+   "trailing_std": 0.002933340500290005,
+   "direction": "down",
+   "significant": true
+  }
+ ],
+ "revenue_split": {
+  "revenue_prev": 826437.1299999986,
+  "revenue_curr": 953356.2499999976,
+  "volume_effect": 56482.659685735984,
+  "aov_effect": 65930.45799799998,
+  "interaction": 4506.002316263004,
+  "total_change": 126919.11999999895
+ },
+ "hypotheses": [
+  {
+   "id": "H1",
+   "statement": "The increase in revenue is primarily driven by a higher volume of orders in the 'SP' customer state.",
+   "dimension": "customer_state",
+   "segment": "SP",
+   "test": "The revenue increase in 'SP' is significantly higher than the overall revenue increase, suggesting a strong contribution from this state.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_b22a63"
+   ]
+  },
+  {
+   "id": "H2",
+   "statement": "The revenue increase is due to a shift in payment methods, specifically an increase in credit card usage.",
+   "dimension": "payment_type",
+   "segment": "credit_card",
+   "test": "The revenue increase for credit card payments is significantly higher than the overall revenue increase, indicating a potential shift in payment behavior.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_bfa315"
+   ]
+  },
+  {
+   "id": "H3",
+   "statement": "The revenue increase is driven by a higher volume of orders in the 'watches_gifts' category.",
+   "dimension": "category",
+   "segment": "watches_gifts",
+   "test": "The revenue increase in the 'watches_gifts' category is significantly higher than the overall revenue increase, suggesting a strong contribution from this category.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_060ec2"
+   ]
+  },
+  {
+   "id": "H4",
+   "statement": "The overall increase in revenue is due to a general market growth or seasonal effects.",
+   "dimension": "general_market_growth",
+   "segment": "general_market_growth",
+   "test": "The revenue increase is consistent across multiple segments, indicating a broader market trend rather than a specific driver.",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_94c268"
+   ]
+  }
+ ],
+ "steps": [
+  {
+   "step": 1,
+   "action": "propose_hypotheses",
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "The increase in revenue is primarily driven by a higher volume of orders in the 'SP' customer state.",
+     "dimension": "customer_state",
+     "segment": "SP",
+     "test": "The revenue increase in 'SP' is significantly higher than the overall revenue increase, suggesting a strong contribution from this state.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_b22a63"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "The revenue increase is due to a shift in payment methods, specifically an increase in credit card usage.",
+     "dimension": "payment_type",
+     "segment": "credit_card",
+     "test": "The revenue increase for credit card payments is significantly higher than the overall revenue increase, indicating a potential shift in payment behavior.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_bfa315"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "The revenue increase is driven by a higher volume of orders in the 'watches_gifts' category.",
+     "dimension": "category",
+     "segment": "watches_gifts",
+     "test": "The revenue increase in the 'watches_gifts' category is significantly higher than the overall revenue increase, suggesting a strong contribution from this category.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_060ec2"
+     ]
+    },
+    {
+     "id": "H4",
+     "statement": "The overall increase in revenue is due to a general market growth or seasonal effects.",
+     "dimension": "general_market_growth",
+     "segment": "general_market_growth",
+     "test": "The revenue increase is consistent across multiple segments, indicating a broader market trend rather than a specific driver.",
+     "status": "supported",
+     "evidence_query_ids": [
+      "q_94c268"
+     ]
+    }
+   ]
+  },
+  {
+   "step": 2,
+   "action": "run_sql",
+   "hypothesis_id": "H1",
+   "reason": "Test if the increase in revenue is primarily driven by a higher volume of orders in the 'SP' customer state.",
+   "sql": "WITH m AS (\n  SELECT customer_state AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-02') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-03') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'SP' ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_b22a63",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 3,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H1",
+   "reason": "The revenue increase in the 'SP' customer state is significantly higher than the overall revenue increase, suggesting a strong contribution from this state.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_b22a63"
+   ]
+  },
+  {
+   "step": 4,
+   "action": "run_sql",
+   "hypothesis_id": "H2",
+   "reason": "Test if the revenue increase is due to a shift in payment methods, specifically an increase in credit card usage.",
+   "sql": "WITH m AS (\n  SELECT payment_type AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-02') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-03') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'credit_card' ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_bfa315",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 5,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H2",
+   "reason": "The revenue increase for credit card payments is significantly higher than the overall revenue increase, indicating a potential shift in payment behavior.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_bfa315"
+   ]
+  },
+  {
+   "step": 6,
+   "action": "run_sql",
+   "hypothesis_id": "H3",
+   "reason": "Test if the revenue increase is driven by a higher volume of orders in the 'watches_gifts' category.",
+   "sql": "WITH m AS (\n  SELECT category AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-02') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-03') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'watches_gifts' ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_060ec2",
+   "error": null,
+   "row_count": 1
+  },
+  {
+   "step": 7,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H3",
+   "reason": "The revenue increase in the 'watches_gifts' category is significantly higher than the overall revenue increase, suggesting a strong contribution from this category.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_060ec2"
+   ]
+  },
+  {
+   "step": 8,
+   "action": "run_sql",
+   "hypothesis_id": "H4",
+   "reason": "Test if the overall increase in revenue is due to a general market growth or seasonal effects.",
+   "sql": "WITH m AS (\n  SELECT order_month,\n         SUM(price) FILTER (WHERE order_month = '2018-02') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-03') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03')\n  GROUP BY 1)\nSELECT order_month, prev, curr, curr - prev AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "status": "none",
+   "evidence_query_ids": [],
+   "query_id": "q_94c268",
+   "error": null,
+   "row_count": 2
+  },
+  {
+   "step": 9,
+   "action": "update_hypothesis",
+   "hypothesis_id": "H4",
+   "reason": "The overall increase in revenue is consistent across multiple segments, indicating a broader market trend rather than a specific driver.",
+   "sql": "",
+   "status": "supported",
+   "evidence_query_ids": [
+    "q_94c268"
+   ]
+  },
+  {
+   "step": 10,
+   "action": "final_report"
+  }
+ ],
+ "queries": [
+  {
+   "query_id": "q_b22a63",
+   "sql": "WITH m AS (\n  SELECT customer_state AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-02') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-03') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'SP' ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT customer_state AS segment, SUM(price) FILTER(WHERE order_month = '2018-02') AS prev, SUM(price) FILTER(WHERE order_month = '2018-03') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03') GROUP BY 1) SELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'SP' ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "segment": "SP",
+     "prev": 307829.14999999554,
+     "curr": 377034.33999999915,
+     "change": 69205.19000000361
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.075,
+   "hypothesis_id": "H1"
+  },
+  {
+   "query_id": "q_bfa315",
+   "sql": "WITH m AS (\n  SELECT payment_type AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-02') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-03') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'credit_card' ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT payment_type AS segment, SUM(price) FILTER(WHERE order_month = '2018-02') AS prev, SUM(price) FILTER(WHERE order_month = '2018-03') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03') GROUP BY 1) SELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'credit_card' ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "segment": "credit_card",
+     "prev": 651156.9400000193,
+     "curr": 771739.7900000224,
+     "change": 120582.85000000312
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.054,
+   "hypothesis_id": "H2"
+  },
+  {
+   "query_id": "q_060ec2",
+   "sql": "WITH m AS (\n  SELECT category AS segment,\n         SUM(price) FILTER (WHERE order_month = '2018-02') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-03') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03')\n  GROUP BY 1)\nSELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'watches_gifts' ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT category AS segment, SUM(price) FILTER(WHERE order_month = '2018-02') AS prev, SUM(price) FILTER(WHERE order_month = '2018-03') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03') GROUP BY 1) SELECT segment, prev, curr, curr - prev AS change FROM m WHERE segment = 'watches_gifts' ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "segment",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "segment": "watches_gifts",
+     "prev": 60725.31000000004,
+     "curr": 95661.17999999985,
+     "change": 34935.869999999806
+    }
+   ],
+   "row_count": 1,
+   "error": null,
+   "elapsed_s": 0.065,
+   "hypothesis_id": "H3"
+  },
+  {
+   "query_id": "q_94c268",
+   "sql": "WITH m AS (\n  SELECT order_month,\n         SUM(price) FILTER (WHERE order_month = '2018-02') AS prev,\n         SUM(price) FILTER (WHERE order_month = '2018-03') AS curr\n  FROM orders_enriched\n  WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03')\n  GROUP BY 1)\nSELECT order_month, prev, curr, curr - prev AS change FROM m ORDER BY abs(change) DESC LIMIT 10;",
+   "executed_sql": "WITH m AS (SELECT order_month, SUM(price) FILTER(WHERE order_month = '2018-02') AS prev, SUM(price) FILTER(WHERE order_month = '2018-03') AS curr FROM orders_enriched WHERE order_status = 'delivered' AND order_month IN ('2018-02', '2018-03') GROUP BY 1) SELECT order_month, prev, curr, curr - prev AS change FROM m ORDER BY ABS(change) DESC LIMIT 10",
+   "columns": [
+    "order_month",
+    "prev",
+    "curr",
+    "change"
+   ],
+   "rows": [
+    {
+     "order_month": "2018-03",
+     "prev": null,
+     "curr": 953356.2500000292,
+     "change": null
+    },
+    {
+     "order_month": "2018-02",
+     "prev": 826437.1300000275,
+     "curr": null,
+     "change": null
+    }
+   ],
+   "row_count": 2,
+   "error": null,
+   "elapsed_s": 0.064,
+   "hypothesis_id": "H4"
+  }
+ ],
+ "revised": false,
+ "verification_before_revision": null,
+ "forced_final": false,
+ "report": {
+  "summary": "The increase in revenue in 2018-03 is primarily driven by a higher volume of orders in the 'SP' customer state, followed by a shift towards credit card payments and an increase in sales of the 'watches_gifts' category. These factors collectively explain the majority of the revenue growth.",
+  "findings": [
+   {
+    "claim": "The revenue increase is primarily driven by a higher volume of orders in the 'SP' customer state.",
+    "kpi": "revenue",
+    "dimension": "customer_state",
+    "segment": "SP",
+    "numbers": [
+     {
+      "value": 69205.19,
+      "meaning": "The increase in revenue in the 'SP' customer state."
+     }
+    ],
+    "evidence_query_ids": [
+     "q_b22a63",
+     "decomp_revenue_customer_state",
+     "decomp_revenue_category",
+     "decomp_revenue_seller_id",
+     "decomp_revenue_payment_type"
+    ],
+    "confidence": "high"
+   },
+   {
+    "claim": "The revenue increase is due to a shift in payment methods, specifically an increase in credit card usage.",
+    "kpi": "revenue",
+    "dimension": "payment_type",
+    "segment": "credit_card",
+    "numbers": [
+     {
+      "value": 120582.85,
+      "meaning": "The increase in revenue for credit card payments."
+     }
+    ],
+    "evidence_query_ids": [
+     "q_bfa315",
+     "decomp_revenue_payment_type"
+    ],
+    "confidence": "high"
+   },
+   {
+    "claim": "The revenue increase is driven by a higher volume of orders in the 'watches_gifts' category.",
+    "kpi": "revenue",
+    "dimension": "category",
+    "segment": "watches_gifts",
+    "numbers": [
+     {
+      "value": 34935.87,
+      "meaning": "The increase in revenue in the 'watches_gifts' category."
+     }
+    ],
+    "evidence_query_ids": [
+     "q_060ec2",
+     "decomp_revenue_category"
+    ],
+    "confidence": "high"
+   }
+  ],
+  "investigate_next": [
+   {
+    "item": "Explore the specific products within the 'watches_gifts' category that contributed most to the revenue increase.",
+    "why": "Identify which specific products drove the category's growth to understand the underlying demand drivers.",
+    "data_needed": "Detailed product-level sales data for the 'watches_gifts' category."
+   },
+   {
+    "item": "Analyze the payment methods used by customers in the 'SP' state to understand the shift towards credit card usage.",
+    "why": "Determine if there are specific factors (e.g., marketing campaigns, payment infrastructure improvements) that influenced this change.",
+    "data_needed": "Detailed payment method data for the 'SP' state."
+   }
+  ]
+ },
+ "verification": {
+  "findings": [
+   {
+    "index": 0,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": 69205.19,
+      "text": "69205.19",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "q_b22a63"
+     }
+    ],
+    "valid_ids": [
+     "q_b22a63",
+     "decomp_revenue_customer_state",
+     "decomp_revenue_category",
+     "decomp_revenue_seller_id",
+     "decomp_revenue_payment_type"
+    ],
+    "invalid_ids": []
+   },
+   {
+    "index": 1,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": 120582.85,
+      "text": "120582.85",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "q_bfa315"
+     }
+    ],
+    "valid_ids": [
+     "q_bfa315",
+     "decomp_revenue_payment_type"
+    ],
+    "invalid_ids": []
+   },
+   {
+    "index": 2,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": 34935.87,
+      "text": "34935.87",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "q_060ec2"
+     }
+    ],
+    "valid_ids": [
+     "q_060ec2",
+     "decomp_revenue_category"
+    ],
+    "invalid_ids": []
+   }
+  ],
+  "summary_numbers": [],
+  "total_numbers": 3,
+  "unsupported_numbers": 0,
+  "unsupported_rate": 0.0
+ },
+ "n_steps": 10,
+ "llm_calls": 10,
+ "llm_retries": 0,
+ "llm_seconds": 101.48,
+ "prompt_tokens": 48159,
+ "output_tokens": 2086,
+ "elapsed_s": 102.05
+}
