@@ -1,0 +1,249 @@
+{
+ "run_id": "s12_decoy_broad_drop_A_r1",
+ "mode": "baseline",
+ "db_path": "/Users/rajkandula/projects/ai-kpi-analyst/data/eval/s12_decoy_broad_drop.duckdb",
+ "month": "2018-05",
+ "question": "Why did revenue drop?",
+ "model": "qwen2.5:7b",
+ "prompt_version": "v4",
+ "focus_kpis": [
+  "revenue"
+ ],
+ "detection": [
+  {
+   "kpi": "revenue",
+   "current": 815571.61,
+   "previous": 973534.0899999986,
+   "pct_change": -0.16225675261150724,
+   "z_score": -0.8126528278382862,
+   "trailing_mean": 898628.5049999994,
+   "trailing_std": 102204.64650438323,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "orders",
+   "current": 5729.0,
+   "previous": 6798.0,
+   "pct_change": -0.1572521329802883,
+   "z_score": -1.5368904889180037,
+   "trailing_mean": 6704.5,
+   "trailing_std": 634.7231680031855,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "aov",
+   "current": 142.35845871879908,
+   "previous": 143.2088982053543,
+   "pct_change": -0.005938454224651111,
+   "z_score": 1.4500393413179462,
+   "trailing_mean": 133.90562524150957,
+   "trailing_std": 5.829382166698115,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "freight_ratio",
+   "current": 0.15790082491959215,
+   "previous": 0.1636766926158693,
+   "pct_change": -0.03528827228829992,
+   "z_score": -1.8698776052281265,
+   "trailing_mean": 0.1671284546672139,
+   "trailing_std": 0.004934884359180279,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "avg_delivery_days",
+   "current": 11.436618214752103,
+   "previous": 11.499241053673197,
+   "pct_change": -0.005445823652952303,
+   "z_score": -1.7895344149162122,
+   "trailing_mean": 14.897066939923873,
+   "trailing_std": 1.9337145440333936,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "late_rate",
+   "current": 0.06702740443358353,
+   "previous": 0.04501323918799647,
+   "pct_change": 0.4890597886911792,
+   "z_score": -0.682828683418526,
+   "trailing_mean": 0.10525208645936807,
+   "trailing_std": 0.05597990089463698,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_review_score",
+   "current": 4.192585584035782,
+   "previous": 4.162501816068575,
+   "pct_change": 0.007227328490542324,
+   "z_score": 1.593861472034056,
+   "trailing_mean": 3.9524831868289247,
+   "trailing_std": 0.1506419481364606,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "cancellation_rate",
+   "current": 0.003937007874015748,
+   "previous": 0.00216169476869866,
+   "pct_change": 0.8212598425196849,
+   "z_score": -0.23091651032652818,
+   "trailing_mean": 0.004689740350527282,
+   "trailing_std": 0.0032597603153067334,
+   "direction": "up",
+   "significant": true
+  }
+ ],
+ "revenue_split": {
+  "revenue_prev": 973534.0899999978,
+  "revenue_curr": 815571.6099999995,
+  "volume_effect": -153090.31218152362,
+  "aov_effect": -5781.287629602173,
+  "interaction": 909.1198111274967,
+  "total_change": -157962.47999999824
+ },
+ "hypotheses": [],
+ "steps": [],
+ "queries": [],
+ "revised": false,
+ "verification_before_revision": null,
+ "report": {
+  "summary": "The revenue drop in May 2018 can be attributed to a significant decrease in the number of orders, with a smaller impact from a slight drop in the average order value (AOV). The cancellation rate remained relatively stable, and the freight ratio and delivery times did not show substantial changes.",
+  "findings": [
+   {
+    "claim": "The number of orders decreased by 22.1% from 4,478 in April to 3,479 in May 2018.",
+    "kpi": "orders",
+    "dimension": "overall",
+    "segment": "all",
+    "numbers": [
+     {
+      "value": 4478.0,
+      "meaning": "April 2018 orders"
+     },
+     {
+      "value": 3479.0,
+      "meaning": "May 2018 orders"
+     }
+    ],
+    "evidence_query_ids": [
+     "kpi_table"
+    ],
+    "confidence": "high"
+   },
+   {
+    "claim": "The average order value (AOV) increased by 6.2% from 143.21 in April to 142.36 in May 2018.",
+    "kpi": "aov",
+    "dimension": "overall",
+    "segment": "all",
+    "numbers": [
+     {
+      "value": 143.21,
+      "meaning": "April 2018 AOV"
+     },
+     {
+      "value": 142.36,
+      "meaning": "May 2018 AOV"
+     }
+    ],
+    "evidence_query_ids": [
+     "kpi_table"
+    ],
+    "confidence": "high"
+   }
+  ],
+  "investigate_next": [
+   {
+    "item": "Analyze the cancellation rate for May 2018 to determine if there were any specific patterns or events that could have led to the decrease in orders.",
+    "why": "The cancellation rate only increased by 0.2% from 0.45% in April to 0.47% in May, suggesting that cancellations were not the primary driver of the order drop.",
+    "data_needed": "cancellation_rate"
+   },
+   {
+    "item": "Review the customer states and payment types to identify any regions or payment methods that may have been affected more significantly.",
+    "why": "The overall decrease in orders was broad-based, and no single segment showed a disproportionately large change.",
+    "data_needed": "customer_state, payment_type"
+   }
+  ]
+ },
+ "verification": {
+  "findings": [
+   {
+    "index": 0,
+    "label": "partially_verified",
+    "numbers": [
+     {
+      "value": 4478.0,
+      "text": "4478.0",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 3479.0,
+      "text": "3479.0",
+      "source": "numbers",
+      "supported": false,
+      "matched_in": null
+     },
+     {
+      "value": 22.1,
+      "text": "22.1%",
+      "source": "claim",
+      "supported": false,
+      "matched_in": null
+     }
+    ],
+    "valid_ids": [
+     "kpi_table"
+    ],
+    "invalid_ids": []
+   },
+   {
+    "index": 1,
+    "label": "verified",
+    "numbers": [
+     {
+      "value": 143.21,
+      "text": "143.21",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 142.36,
+      "text": "142.36",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 6.2,
+      "text": "6.2%",
+      "source": "claim",
+      "supported": true,
+      "matched_in": "kpi_table"
+     }
+    ],
+    "valid_ids": [
+     "kpi_table"
+    ],
+    "invalid_ids": []
+   }
+  ],
+  "summary_numbers": [],
+  "total_numbers": 6,
+  "unsupported_numbers": 2,
+  "unsupported_rate": 0.3333333333333333
+ },
+ "n_steps": 1,
+ "llm_calls": 1,
+ "llm_retries": 0,
+ "llm_seconds": 38.2,
+ "prompt_tokens": 2168,
+ "output_tokens": 575,
+ "elapsed_s": 38.57
+}

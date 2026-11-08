@@ -2,3 +2,38 @@ run_id,scenario,config,run,hit1,hit3,unsupported_numbers,total_numbers,unsupport
 s01_category_demand_drop_A_r1,s01_category_demand_drop,A,1,0,0,0,6,0.0,0,6,False,1,1,72.87,overall,all,2,"{""revenue"": false}",,qwen2.5:7b,v4,2026-11-08T01:48:02
 s01_category_demand_drop_B_r1,s01_category_demand_drop,B,1,1.0,1.0,0,6,0.0,0,6,False,11,11,321.32,category,health_beauty,3,"{""revenue"": false}",,qwen2.5:7b,v4,2026-11-08T01:49:15
 s02_category_price_hike_A_r1,s02_category_price_hike,A,1,0,0,1,4,0.25,1,4,False,1,1,28.08,overall,all,1,"{""aov"": true}",,qwen2.5:7b,v4,2026-11-08T01:56:13
+s01_category_demand_drop_C_r1,s01_category_demand_drop,C,1,1.0,1.0,0,6,0.0,0,6,False,12,13,147.31,category,health_beauty,3,"{""revenue"": false}",,qwen2.5:7b,v4,2026-11-08T02:09:23
+s02_category_price_hike_B_r1,s02_category_price_hike,B,1,0,0,0,3,0.0,0,3,False,9,9,120.34,customer_state,SP,3,"{""aov"": true}",,qwen2.5:7b,v4,2026-11-08T02:11:50
+s02_category_price_hike_C_r1,s02_category_price_hike,C,1,0,0,0,3,0.0,0,3,False,10,10,138.7,customer_state,SP,3,"{""aov"": true}",,qwen2.5:7b,v4,2026-11-08T02:13:51
+s03_top_seller_dropout_A_r1,s03_top_seller_dropout,A,1,0,0,2,7,0.2857142857142857,2,7,False,1,1,35.76,orders,all,2,"{""revenue"": false}",,qwen2.5:7b,v4,2026-11-08T02:16:10
+s03_top_seller_dropout_B_r1,s03_top_seller_dropout,B,1,0,0,1,6,0.16666666666666666,1,6,False,12,12,194.13,overall,all,3,"{""revenue"": false}",,qwen2.5:7b,v4,2026-11-08T02:16:45
+s03_top_seller_dropout_C_r1,s03_top_seller_dropout,C,1,0,0,0,5,0.0,0,5,False,12,12,171.19,overall,all,2,"{""revenue"": false}",,qwen2.5:7b,v4,2026-11-08T02:20:00
+s04_regional_delivery_delay_A_r1,s04_regional_delivery_delay,A,1,0,0,5,16,0.3125,5,16,False,1,1,59.83,overall,all,2,"{""late_rate"": true}",,qwen2.5:7b,v4,2026-11-08T02:22:51
+s04_regional_delivery_delay_B_r1,s04_regional_delivery_delay,B,1,0.0,0.0,0,0,,,,,0,,273.45,,,,"{""late_rate"": true}","LLMError: invalid JSON after 2 attempts: 1 validation error for Report
+  Invalid JSON: EOF while parsing a string at line 19 column 3807 [type=json_invalid, input_value='{\n  ""summary"": ""The inc...category_2018",qwen2.5:7b,v4,2026-11-08T02:23:51
+s04_regional_delivery_delay_C_r1,s04_regional_delivery_delay,C,1,0.0,0.0,0,0,,,,,0,,389.53,,,,"{""late_rate"": true}","LLMError: invalid JSON after 2 attempts: 1 validation error for Report
+  Invalid JSON: EOF while parsing a string at line 15 column 3872 [type=json_invalid, input_value='{\n  ""summary"": ""The inc...05_vs_2018-04",qwen2.5:7b,v4,2026-11-08T02:28:24
+s05_delay_hurts_reviews_A_r1,s05_delay_hurts_reviews,A,1,0,0,1,3,0.3333333333333333,1,3,False,1,1,33.51,overall,all,1,"{""avg_review_score"": false}",,qwen2.5:7b,v4,2026-11-08T02:34:54
+s05_delay_hurts_reviews_B_r1,s05_delay_hurts_reviews,B,1,0,0,0,6,0.0,0,6,False,12,12,268.59,category,watches_gifts,3,"{""avg_review_score"": false}",,qwen2.5:7b,v4,2026-11-08T02:35:27
+s05_delay_hurts_reviews_C_r1,s05_delay_hurts_reviews,C,1,0,0,0,2,0.0,0,2,False,10,10,143.23,overall,all,1,"{""avg_review_score"": false}",,qwen2.5:7b,v4,2026-11-08T02:39:56
+s06_freight_spike_A_r1,s06_freight_spike,A,1,0,0,3,9,0.3333333333333333,3,9,False,1,1,48.21,freight_value,all,2,"{""freight_ratio"": true}",,qwen2.5:7b,v4,2026-11-08T02:42:19
+s06_freight_spike_B_r1,s06_freight_spike,B,1,1.0,1.0,0,6,0.0,0,6,False,10,10,215.88,customer_state,RJ,3,"{""freight_ratio"": true}",,qwen2.5:7b,v4,2026-11-08T02:43:08
+s06_freight_spike_C_r1,s06_freight_spike,C,1,1.0,1.0,0,4,0.0,1,5,True,11,11,250.26,customer_state,RJ,2,"{""freight_ratio"": true}",,qwen2.5:7b,v4,2026-11-08T02:46:44
+s07_regional_demand_surge_A_r1,s07_regional_demand_surge,A,1,0,0,1,3,0.3333333333333333,1,3,False,1,1,34.53,overall,all,1,"{""orders"": true}",,qwen2.5:7b,v4,2026-11-08T02:50:54
+s07_regional_demand_surge_B_r1,s07_regional_demand_surge,B,1,1.0,1.0,0,6,0.0,0,6,False,9,9,171.45,customer_state,SP,3,"{""orders"": true}",,qwen2.5:7b,v4,2026-11-08T02:51:28
+s07_regional_demand_surge_C_r1,s07_regional_demand_surge,C,1,1.0,1.0,0,6,0.0,0,6,False,9,9,159.62,customer_state,SP,3,"{""orders"": true}",,qwen2.5:7b,v4,2026-11-08T02:54:20
+s08_payment_mix_shift_A_r1,s08_payment_mix_shift,A,1,1.0,1.0,3,12,0.25,3,12,False,1,1,67.76,payment_type,credit_card,4,{},,qwen2.5:7b,v4,2026-11-08T02:57:00
+s08_payment_mix_shift_B_r1,s08_payment_mix_shift,B,1,0,1.0,0,7,0.0,0,7,False,11,11,254.86,overall,all,3,{},,qwen2.5:7b,v4,2026-11-08T02:58:07
+s08_payment_mix_shift_C_r1,s08_payment_mix_shift,C,1,1.0,1.0,0,6,0.0,0,6,False,9,9,172.04,payment_type,voucher,2,{},,qwen2.5:7b,v4,2026-11-08T03:02:22
+s09_cancellation_spike_A_r1,s09_cancellation_spike,A,1,0,0,0,2,0.0,0,2,False,1,1,35.85,overall,all,1,"{""cancellation_rate"": true}",,qwen2.5:7b,v4,2026-11-08T03:05:14
+s09_cancellation_spike_B_r1,s09_cancellation_spike,B,1,0,1.0,0,4,0.0,0,4,False,10,10,166.67,customer_state,SC,2,"{""cancellation_rate"": true}",,qwen2.5:7b,v4,2026-11-08T03:05:50
+s09_cancellation_spike_C_r1,s09_cancellation_spike,C,1,0,1.0,0,4,0.0,0,4,False,10,10,155.55,customer_state,SC,2,"{""cancellation_rate"": true}",,qwen2.5:7b,v4,2026-11-08T03:08:37
+s10_big_ticket_category_drop_A_r1,s10_big_ticket_category_drop,A,1,0,0,1,7,0.14285714285714285,1,7,False,1,1,46.12,overall,all,1,"{""aov"": false}",,qwen2.5:7b,v4,2026-11-08T03:11:13
+s10_big_ticket_category_drop_B_r1,s10_big_ticket_category_drop,B,1,1.0,1.0,0,10,0.0,0,10,False,10,10,191.36,category,watches_gifts,3,"{""aov"": false}",,qwen2.5:7b,v4,2026-11-08T03:11:59
+s10_big_ticket_category_drop_C_r1,s10_big_ticket_category_drop,C,1,1.0,1.0,0,10,0.0,0,10,False,10,10,179.34,category,watches_gifts,3,"{""aov"": false}",,qwen2.5:7b,v4,2026-11-08T03:15:10
+s11_two_causes_A_r1,s11_two_causes,A,1,0,0,6,9,0.6666666666666666,6,9,False,1,1,61.71,seller_id,10000000000000000000000000000001,2,"{""revenue"": false, ""late_rate"": true}",,qwen2.5:7b,v4,2026-11-08T03:18:10
+s11_two_causes_B_r1,s11_two_causes,B,1,0.5,1.0,0,4,0.0,0,4,False,12,12,196.62,category,sports_leisure,2,"{""revenue"": false, ""late_rate"": true}",,qwen2.5:7b,v4,2026-11-08T03:19:12
+s11_two_causes_C_r1,s11_two_causes,C,1,0.5,1.0,0,4,0.0,0,4,False,12,12,167.14,category,sports_leisure,2,"{""revenue"": false, ""late_rate"": true}",,qwen2.5:7b,v4,2026-11-08T03:22:28
+s12_decoy_broad_drop_A_r1,s12_decoy_broad_drop,A,1,0.0,0.0,2,6,0.3333333333333333,2,6,False,1,1,38.57,overall,all,2,"{""revenue"": true}",,qwen2.5:7b,v4,2026-11-08T03:25:15
+s12_decoy_broad_drop_B_r1,s12_decoy_broad_drop,B,1,0.0,0.0,0,9,0.0,0,9,False,11,11,217.07,payment_type,credit_card,3,"{""revenue"": true}",,qwen2.5:7b,v4,2026-11-08T03:25:54
+s12_decoy_broad_drop_C_r1,s12_decoy_broad_drop,C,1,0.0,0.0,0,6,0.0,0,6,False,10,10,153.26,customer_state,SP,3,"{""revenue"": true}",,qwen2.5:7b,v4,2026-11-08T03:29:31

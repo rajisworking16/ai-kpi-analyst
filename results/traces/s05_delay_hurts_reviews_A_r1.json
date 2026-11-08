@@ -1,0 +1,198 @@
+{
+ "run_id": "s05_delay_hurts_reviews_A_r1",
+ "mode": "baseline",
+ "db_path": "/Users/rajkandula/projects/ai-kpi-analyst/data/eval/s05_delay_hurts_reviews.duckdb",
+ "month": "2018-05",
+ "question": "Why did review scores fall?",
+ "model": "qwen2.5:7b",
+ "prompt_version": "v4",
+ "focus_kpis": [
+  "avg_review_score"
+ ],
+ "detection": [
+  {
+   "kpi": "revenue",
+   "current": 977544.6899999977,
+   "previous": 973534.0899999975,
+   "pct_change": 0.004119629750202399,
+   "z_score": 0.7721389163712401,
+   "trailing_mean": 898628.504999998,
+   "trailing_std": 102204.64650438269,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "orders",
+   "current": 6749.0,
+   "previous": 6798.0,
+   "pct_change": -0.007208002353633422,
+   "z_score": 0.07010930472255374,
+   "trailing_mean": 6704.5,
+   "trailing_std": 634.7231680031855,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "aov",
+   "current": 144.84289376203847,
+   "previous": 143.20889820535416,
+   "pct_change": 0.011409874506130523,
+   "z_score": 1.8762311695759344,
+   "trailing_mean": 133.9056252415094,
+   "trailing_std": 5.829382166698101,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "freight_ratio",
+   "current": 0.154703750679675,
+   "previous": 0.1636766926158694,
+   "pct_change": -0.054821134229861665,
+   "z_score": -2.5177295116197373,
+   "trailing_mean": 0.16712845466721396,
+   "trailing_std": 0.0049348843591803205,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "avg_delivery_days",
+   "current": 12.456219630274445,
+   "previous": 11.499241053673192,
+   "pct_change": 0.08322102059905653,
+   "z_score": -1.2622583396193707,
+   "trailing_mean": 14.897066939923867,
+   "trailing_std": 1.9337145440333954,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "late_rate",
+   "current": 0.09779226552081789,
+   "previous": 0.04501323918799647,
+   "pct_change": 1.1725222908840525,
+   "z_score": -0.13325891649202337,
+   "trailing_mean": 0.10525208645936807,
+   "trailing_std": 0.05597990089463698,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_review_score",
+   "current": 4.0652142126041815,
+   "previous": 4.162501816068575,
+   "pct_change": -0.02337238703148014,
+   "z_score": 0.7483375458815638,
+   "trailing_mean": 3.9524831868289247,
+   "trailing_std": 0.1506419481364606,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "cancellation_rate",
+   "current": 0.003491924923614142,
+   "previous": 0.00216169476869866,
+   "pct_change": 0.6153644696639021,
+   "z_score": -0.36745506143154244,
+   "trailing_mean": 0.004689740350527282,
+   "trailing_std": 0.0032597603153067334,
+   "direction": "up",
+   "significant": true
+  }
+ ],
+ "revenue_split": {
+  "revenue_prev": 973534.089999996,
+  "revenue_curr": 977544.6899999958,
+  "volume_effect": -7017.2360120623425,
+  "aov_effect": 11107.901794339565,
+  "interaction": -80.06578227752848,
+  "total_change": 4010.599999999744
+ },
+ "hypotheses": [],
+ "steps": [],
+ "queries": [],
+ "revised": false,
+ "verification_before_revision": null,
+ "report": {
+  "summary": "The decrease in average review scores in May 2018 can be attributed primarily to a significant drop in the overall average review score, which was the largest change compared to the previous month. This change was broad-based, affecting all segments to a similar extent.",
+  "findings": [
+   {
+    "claim": "The overall average review score decreased from 4.1625 in April 2018 to 4.0652 in May 2018, a drop of 2.4%.",
+    "kpi": "avg_review_score",
+    "dimension": "overall",
+    "segment": "all",
+    "numbers": [
+     {
+      "value": 4.1625,
+      "meaning": "Average review score in April 2018"
+     },
+     {
+      "value": 4.0652,
+      "meaning": "Average review score in May 2018"
+     }
+    ],
+    "evidence_query_ids": [
+     "kpi_table"
+    ],
+    "confidence": "high"
+   }
+  ],
+  "investigate_next": [
+   {
+    "item": "Analyze the distribution of review scores across different categories to identify any specific categories that may have contributed more significantly to the overall decrease.",
+    "why": "Some categories might have seen a more pronounced drop in review scores, which could provide insights into the root cause of the overall decrease.",
+    "data_needed": "decomp_review_score_category"
+   },
+   {
+    "item": "Examine the reasons behind the increase in late delivery rate from 4.5% in April to 9.8% in May.",
+    "why": "Late deliveries can negatively impact customer satisfaction and review scores, and understanding the reasons behind this increase could help explain the drop in review scores.",
+    "data_needed": "decomp_late_delivery_reasons"
+   }
+  ]
+ },
+ "verification": {
+  "findings": [
+   {
+    "index": 0,
+    "label": "partially_verified",
+    "numbers": [
+     {
+      "value": 4.1625,
+      "text": "4.1625",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 4.0652,
+      "text": "4.0652",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 2.4,
+      "text": "2.4%",
+      "source": "claim",
+      "supported": false,
+      "matched_in": null
+     }
+    ],
+    "valid_ids": [
+     "kpi_table"
+    ],
+    "invalid_ids": []
+   }
+  ],
+  "summary_numbers": [],
+  "total_numbers": 3,
+  "unsupported_numbers": 1,
+  "unsupported_rate": 0.3333333333333333
+ },
+ "n_steps": 1,
+ "llm_calls": 1,
+ "llm_retries": 0,
+ "llm_seconds": 33.25,
+ "prompt_tokens": 2170,
+ "output_tokens": 416,
+ "elapsed_s": 33.51
+}

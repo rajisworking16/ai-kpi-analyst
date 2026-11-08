@@ -19,7 +19,7 @@ Resume from here. Build order is Section 10 of PROJECT_SPEC.md. Venv: `.venv/bin
 - Step 8: Streamlit app, screenshots (scripts/screenshots.py)
 
 ## In progress
-- Smoke eval (s01, s04 x A/B/C) -> results/eval_runs.csv
+- Full eval started 02:10 on 2026-11-08 (caffeinate -dims, log results/eval.log). Expected finish about 04:00. If interrupted, rerun: `nohup caffeinate -dims .venv/bin/python -m eval.run_eval --configs A B C --scenarios all --runs 1 >> results/eval.log 2>&1 &` (resumes from CSV).
 - Step 9: README drafted with [TBD], docs/architecture.md, scripts/check_repo.py, scripts/check_readme.py written
 
 ## Next

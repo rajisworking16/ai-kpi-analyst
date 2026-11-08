@@ -1,0 +1,198 @@
+{
+ "run_id": "s07_regional_demand_surge_A_r1",
+ "mode": "baseline",
+ "db_path": "/Users/rajkandula/projects/ai-kpi-analyst/data/eval/s07_regional_demand_surge.duckdb",
+ "month": "2018-05",
+ "question": "Why did orders rise?",
+ "model": "qwen2.5:7b",
+ "prompt_version": "v4",
+ "focus_kpis": [
+  "orders"
+ ],
+ "detection": [
+  {
+   "kpi": "revenue",
+   "current": 1144767.3299999963,
+   "previous": 973534.0899999979,
+   "pct_change": 0.17588828348065227,
+   "z_score": 2.4082938830911425,
+   "trailing_mean": 898628.5049999985,
+   "trailing_std": 102204.64650438291,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "orders",
+   "current": 8003.0,
+   "previous": 6798.0,
+   "pct_change": 0.1772580170638423,
+   "z_score": 2.0457737569041803,
+   "trailing_mean": 6704.5,
+   "trailing_std": 634.7231680031855,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "aov",
+   "current": 143.04227539672578,
+   "previous": 143.20889820535422,
+   "pct_change": -0.0011634948017650655,
+   "z_score": 1.5673445133537234,
+   "trailing_mean": 133.90562524150943,
+   "trailing_std": 5.8293821666981325,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "freight_ratio",
+   "current": 0.15089095877675016,
+   "previous": 0.16367669261586942,
+   "pct_change": -0.07811578811117555,
+   "z_score": -3.29034982557543,
+   "trailing_mean": 0.16712845466721402,
+   "trailing_std": 0.004934884359180313,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "avg_delivery_days",
+   "current": 10.930915751789833,
+   "previous": 11.499241053673193,
+   "pct_change": -0.049422853145757915,
+   "z_score": -2.0510530886639184,
+   "trailing_mean": 14.897066939923867,
+   "trailing_std": 1.9337145440333945,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "late_rate",
+   "current": 0.0633512432837686,
+   "previous": 0.04501323918799647,
+   "pct_change": 0.4073913458923494,
+   "z_score": -0.7484979877771395,
+   "trailing_mean": 0.10525208645936807,
+   "trailing_std": 0.05597990089463698,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_review_score",
+   "current": 4.198250369640217,
+   "previous": 4.162501816068575,
+   "pct_change": 0.008588237351306614,
+   "z_score": 1.6314657759780256,
+   "trailing_mean": 3.9524831868289247,
+   "trailing_std": 0.1506419481364606,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "cancellation_rate",
+   "current": 0.0038008827856792545,
+   "previous": 0.00216169476869866,
+   "pct_change": 0.7582883766552231,
+   "z_score": -0.27267574265330263,
+   "trailing_mean": 0.004689740350527282,
+   "trailing_std": 0.0032597603153067334,
+   "direction": "up",
+   "significant": true
+  }
+ ],
+ "revenue_split": {
+  "revenue_prev": 973534.0899999966,
+  "revenue_curr": 1144767.3299999945,
+  "volume_effect": 172566.7223374516,
+  "aov_effect": -1132.7018530564674,
+  "interaction": -200.7804843973291,
+  "total_change": 171233.2399999979
+ },
+ "hypotheses": [],
+ "steps": [],
+ "queries": [],
+ "revised": false,
+ "verification_before_revision": null,
+ "report": {
+  "summary": "The increase in orders from 2018-04 to 2018-05 can be attributed to a broad-based rise in orders across all segments, with no single segment explaining a disproportionate share of the change.",
+  "findings": [
+   {
+    "claim": "Orders increased by 14.29% from 2018-04 to 2018-05, which is a broad-based increase across all segments.",
+    "kpi": "orders",
+    "dimension": "overall",
+    "segment": "all",
+    "numbers": [
+     {
+      "value": 8003.0,
+      "meaning": "Orders in 2018-05"
+     },
+     {
+      "value": 6798.0,
+      "meaning": "Orders in 2018-04"
+     }
+    ],
+    "evidence_query_ids": [
+     "kpi_table"
+    ],
+    "confidence": "high"
+   }
+  ],
+  "investigate_next": [
+   {
+    "item": "Analyze the change in the number of new customers in 2018-05 compared to 2018-04 to understand if the increase in orders is due to new customer acquisition or repeat business.",
+    "why": "New customer acquisition can significantly impact order counts, especially if the new customers are more active or have different purchasing behaviors.",
+    "data_needed": "New customer count and their order frequency in 2018-04 and 2018-05."
+   },
+   {
+    "item": "Review marketing campaigns and promotions in 2018-05 to see if any specific initiatives led to an increase in orders.",
+    "why": "Marketing campaigns can drive a sudden increase in orders, especially if they target a broad audience or offer significant discounts.",
+    "data_needed": "Details of marketing campaigns and their impact on orders."
+   }
+  ]
+ },
+ "verification": {
+  "findings": [
+   {
+    "index": 0,
+    "label": "partially_verified",
+    "numbers": [
+     {
+      "value": 8003.0,
+      "text": "8003.0",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 6798.0,
+      "text": "6798.0",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 14.29,
+      "text": "14.29%",
+      "source": "claim",
+      "supported": false,
+      "matched_in": null
+     }
+    ],
+    "valid_ids": [
+     "kpi_table"
+    ],
+    "invalid_ids": []
+   }
+  ],
+  "summary_numbers": [],
+  "total_numbers": 3,
+  "unsupported_numbers": 1,
+  "unsupported_rate": 0.3333333333333333
+ },
+ "n_steps": 1,
+ "llm_calls": 1,
+ "llm_retries": 0,
+ "llm_seconds": 34.26,
+ "prompt_tokens": 2170,
+ "output_tokens": 431,
+ "elapsed_s": 34.53
+}

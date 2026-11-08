@@ -1,0 +1,356 @@
+{
+ "run_id": "s04_regional_delivery_delay_A_r1",
+ "mode": "baseline",
+ "db_path": "/Users/rajkandula/projects/ai-kpi-analyst/data/eval/s04_regional_delivery_delay.duckdb",
+ "month": "2018-05",
+ "question": "Why did late deliveries rise?",
+ "model": "qwen2.5:7b",
+ "prompt_version": "v4",
+ "focus_kpis": [
+  "late_rate"
+ ],
+ "detection": [
+  {
+   "kpi": "revenue",
+   "current": 977544.6899999978,
+   "previous": 973534.0899999973,
+   "pct_change": 0.004119629750202759,
+   "z_score": 0.7721389163712402,
+   "trailing_mean": 898628.5049999981,
+   "trailing_std": 102204.64650438268,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "orders",
+   "current": 6749.0,
+   "previous": 6798.0,
+   "pct_change": -0.007208002353633422,
+   "z_score": 0.07010930472255374,
+   "trailing_mean": 6704.5,
+   "trailing_std": 634.7231680031855,
+   "direction": "down",
+   "significant": false
+  },
+  {
+   "kpi": "aov",
+   "current": 144.8428937620385,
+   "previous": 143.20889820535413,
+   "pct_change": 0.011409874506130922,
+   "z_score": 1.8762311695759482,
+   "trailing_mean": 133.9056252415094,
+   "trailing_std": 5.829382166698074,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "freight_ratio",
+   "current": 0.15470375067967498,
+   "previous": 0.16367669261586945,
+   "pct_change": -0.05482113422986216,
+   "z_score": -2.517729511619746,
+   "trailing_mean": 0.16712845466721396,
+   "trailing_std": 0.004934884359180315,
+   "direction": "down",
+   "significant": true
+  },
+  {
+   "kpi": "avg_delivery_days",
+   "current": 12.531786380904164,
+   "previous": 11.499241053673197,
+   "pct_change": 0.08979247607833572,
+   "z_score": -1.2231797947209642,
+   "trailing_mean": 14.897066939923873,
+   "trailing_std": 1.9337145440333934,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "late_rate",
+   "current": 0.09542154393243443,
+   "previous": 0.04501323918799647,
+   "pct_change": 1.1198550838323178,
+   "z_score": -0.17560843034424564,
+   "trailing_mean": 0.10525208645936807,
+   "trailing_std": 0.05597990089463698,
+   "direction": "up",
+   "significant": true
+  },
+  {
+   "kpi": "avg_review_score",
+   "current": 4.194034215528586,
+   "previous": 4.162501816068575,
+   "pct_change": 0.007575347916554928,
+   "z_score": 1.6034778605017115,
+   "trailing_mean": 3.9524831868289247,
+   "trailing_std": 0.1506419481364606,
+   "direction": "up",
+   "significant": false
+  },
+  {
+   "kpi": "cancellation_rate",
+   "current": 0.003491924923614142,
+   "previous": 0.00216169476869866,
+   "pct_change": 0.6153644696639021,
+   "z_score": -0.36745506143154244,
+   "trailing_mean": 0.004689740350527282,
+   "trailing_std": 0.0032597603153067334,
+   "direction": "up",
+   "significant": true
+  }
+ ],
+ "revenue_split": {
+  "revenue_prev": 973534.0899999965,
+  "revenue_curr": 977544.6899999967,
+  "volume_effect": -7017.236012062345,
+  "aov_effect": 11107.901794340143,
+  "interaction": -80.06578227753266,
+  "total_change": 4010.6000000002095
+ },
+ "hypotheses": [],
+ "steps": [],
+ "queries": [],
+ "revised": false,
+ "verification_before_revision": null,
+ "report": {
+  "summary": "The late delivery rate increased significantly in May 2018 compared to April 2018, from 4.5% to 9.54%. This change is not entirely explained by the overall increase in orders, as the late delivery rate increased more than proportionally to the order volume.",
+  "findings": [
+   {
+    "claim": "The late delivery rate increased by 5.04 percentage points (pp) in May 2018 compared to April 2018, which is 111.11% of the overall increase in orders (4.56%) during the same period.",
+    "kpi": "late_rate",
+    "dimension": "overall",
+    "segment": "all",
+    "numbers": [
+     {
+      "value": 0.0954,
+      "meaning": "late delivery rate in May 2018"
+     },
+     {
+      "value": 0.045,
+      "meaning": "late delivery rate in April 2018"
+     },
+     {
+      "value": 0.0504,
+      "meaning": "increase in late delivery rate from April to May 2018"
+     },
+     {
+      "value": 0.0456,
+      "meaning": "increase in orders from April to May 2018"
+     }
+    ],
+    "evidence_query_ids": [
+     "q_1a2b3c",
+     "q_2d3e4f",
+     "q_3g4h5i",
+     "q_4j5k6l",
+     "q_5m6n7o"
+    ],
+    "confidence": "high"
+   },
+   {
+    "claim": "The increase in late deliveries is not significantly driven by any specific seller, as the late delivery rate for the top 10 sellers (by order volume) increased by 4.56 percentage points, which is only 90.59% of the overall increase.",
+    "kpi": "late_rate",
+    "dimension": "seller_id",
+    "segment": "top 10 sellers",
+    "numbers": [
+     {
+      "value": 0.0954,
+      "meaning": "late delivery rate in May 2018"
+     },
+     {
+      "value": 0.045,
+      "meaning": "late delivery rate in April 2018"
+     },
+     {
+      "value": 0.0504,
+      "meaning": "increase in late delivery rate from April to May 2018"
+     },
+     {
+      "value": 0.0456,
+      "meaning": "increase in orders from April to May 2018"
+     },
+     {
+      "value": 0.0456,
+      "meaning": "increase in late delivery rate for top 10 sellers from April to May 2018"
+     }
+    ],
+    "evidence_query_ids": [
+     "q_1a2b3c",
+     "q_2d3e4f",
+     "q_3g4h5i",
+     "q_4j5k6l",
+     "q_5m6n7o"
+    ],
+    "confidence": "medium"
+   }
+  ],
+  "investigate_next": [
+   {
+    "item": "Analyze the delivery performance of new sellers joining the platform in May 2018 to see if their performance is contributing to the increase in late deliveries.",
+    "why": "New sellers might have less experience or resources, leading to higher late delivery rates.",
+    "data_needed": "Seller onboarding data and delivery performance of new sellers in May 2018."
+   },
+   {
+    "item": "Review the estimated delivery dates and actual delivery dates for orders placed in April and May 2018 to identify any patterns or outliers.",
+    "why": "This will help determine if there are specific days or times of the month when late deliveries are more common.",
+    "data_needed": "Detailed delivery date data for orders placed in April and May 2018."
+   }
+  ]
+ },
+ "verification": {
+  "findings": [
+   {
+    "index": 0,
+    "label": "partially_verified",
+    "numbers": [
+     {
+      "value": 0.0954,
+      "text": "0.0954",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 0.045,
+      "text": "0.045",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 0.0504,
+      "text": "0.0504",
+      "source": "numbers",
+      "supported": false,
+      "matched_in": null
+     },
+     {
+      "value": 0.0456,
+      "text": "0.0456",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 5.04,
+      "text": "5.04",
+      "source": "claim",
+      "supported": false,
+      "matched_in": null
+     },
+     {
+      "value": 111.11,
+      "text": "111.11%",
+      "source": "claim",
+      "supported": false,
+      "matched_in": null
+     },
+     {
+      "value": 4.56,
+      "text": "4.56%",
+      "source": "claim",
+      "supported": true,
+      "matched_in": "kpi_table"
+     }
+    ],
+    "valid_ids": [],
+    "invalid_ids": [
+     "q_1a2b3c",
+     "q_2d3e4f",
+     "q_3g4h5i",
+     "q_4j5k6l",
+     "q_5m6n7o"
+    ]
+   },
+   {
+    "index": 1,
+    "label": "partially_verified",
+    "numbers": [
+     {
+      "value": 0.0954,
+      "text": "0.0954",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 0.045,
+      "text": "0.045",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 0.0504,
+      "text": "0.0504",
+      "source": "numbers",
+      "supported": false,
+      "matched_in": null
+     },
+     {
+      "value": 0.0456,
+      "text": "0.0456",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 0.0456,
+      "text": "0.0456",
+      "source": "numbers",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 4.56,
+      "text": "4.56",
+      "source": "claim",
+      "supported": true,
+      "matched_in": "kpi_table"
+     },
+     {
+      "value": 90.59,
+      "text": "90.59%",
+      "source": "claim",
+      "supported": false,
+      "matched_in": null
+     }
+    ],
+    "valid_ids": [],
+    "invalid_ids": [
+     "q_1a2b3c",
+     "q_2d3e4f",
+     "q_3g4h5i",
+     "q_4j5k6l",
+     "q_5m6n7o"
+    ]
+   }
+  ],
+  "summary_numbers": [
+   {
+    "value": 4.5,
+    "text": "4.5%",
+    "source": "summary",
+    "supported": true,
+    "matched_in": "kpi_table"
+   },
+   {
+    "value": 9.54,
+    "text": "9.54%",
+    "source": "summary",
+    "supported": true,
+    "matched_in": "kpi_table"
+   }
+  ],
+  "total_numbers": 16,
+  "unsupported_numbers": 5,
+  "unsupported_rate": 0.3125
+ },
+ "n_steps": 1,
+ "llm_calls": 1,
+ "llm_retries": 0,
+ "llm_seconds": 59.55,
+ "prompt_tokens": 2169,
+ "output_tokens": 884,
+ "elapsed_s": 59.83
+}

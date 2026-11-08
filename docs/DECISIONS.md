@@ -33,3 +33,5 @@ One line each: decision, then reason.
 - Scoring: a finding hits when its `dimension` (normalised synonyms) and `segment` (case-insensitive, English or Portuguese category, state code, seller id or 8+ char prefix) match the truth; claim text is not used. Decoy hit = summary describes a broad drop and no non-overall finding cites a share > 50%.
 - Failed runs (LLM errors) are kept in the CSV as misses with the error message, never dropped.
 - Streamlit app accepts `?run=<saved run id>&month=` query params: lets Playwright capture screenshots of a saved run without driving widgets.
+- Eval rows for s01 A/B and s02 A were produced before the fix that retries Ollama 'token repeat limit' aborts (commit history); that fix only changes the error path, so those rows were kept. The one aborted run (s01 C) was removed and re-run. The eval runs under `caffeinate -dims`: with only `-i`, prompt processing once dropped to 2.7 tokens/s while the display was asleep.
+- `scripts/check_repo.py` allows exactly one CSV, `results/eval_runs.csv`: the spec requires committing it (one row per eval run, no dataset rows) and also bans tracked CSVs; the allowlist keeps both rules.
