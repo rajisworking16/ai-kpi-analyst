@@ -11,3 +11,9 @@ results/eval.log
 .claude/
 .DS_Store
 results/*.log
+
+# Local working notes
+PROJECT_SPEC.md
+PROGRESS.md
+CLAUDE.md
+.claude/
